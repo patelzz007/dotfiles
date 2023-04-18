@@ -77,67 +77,67 @@ alias ncu_all_repo_123='ncu_all_repo'
 
 ######### Start Angular #########
 # HLBB Templates
-alias template_1='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-1'
-alias template_2='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-2'
-alias template_3='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-3'
-alias template_4='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-4'
+alias template_1='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-1/'
+alias template_2='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-2/'
+alias template_3='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-3/'
+alias template_4='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-4/'
 
 # Angular Boilerplate
-alias boilerplate_14='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-14-Tailwind-Boilerplate'
-alias boilerplate_15='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-15-Boilerplate/'
+alias boilerplate_14='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-14-Tailwind-Boilerplate/'
+alias boilerplate_15='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-15-Tailwind-Boilerplate/'
 
 # Fuse-12
-alias fuse_12_demo='cl D:laragon/www/Angular/Fuse/Angular-12/Fuse-Angular-12-Demo'
-alias fuse_12_starter='cl D:laragon/www/Angular/Fuse/Angular-12/Fuse-Angular-12-Starter'
+alias fuse_12_demo='cl D:laragon/www/Angular/Fuse/Angular-12/Fuse-Angular-12-Demo/'
+alias fuse_12_starter='cl D:laragon/www/Angular/Fuse/Angular-12/Fuse-Angular-12-Starter/'
 
 # Fuse-13
-alias fuse_13_demo='cl D:laragon/www/Angular/Fuse/Angular-13/Fuse-Angular-13-Demo'
-alias fuse_13_skeleton='cl D:laragon/www/Angular/Fuse/Angular-13/Fuse-Angular-13-Skeleton'
-alias fuse_13_starter='cl D:laragon/www/Angular/Fuse/Angular-13/Fuse-Angular-13-Starter'
+alias fuse_13_demo='cl D:laragon/www/Angular/Fuse/Angular-13/Fuse-Angular-13-Demo/'
+alias fuse_13_skeleton='cl D:laragon/www/Angular/Fuse/Angular-13/Fuse-Angular-13-Skeleton/'
+alias fuse_13_starter='cl D:laragon/www/Angular/Fuse/Angular-13/Fuse-Angular-13-Starter/'
 
 # Fuse-14
-alias fuse_14='cl D:laragon/www/Angular/Fuse/Angular-14/Fuse-Angular-14'
-alias fuse_14_demo='cl D:laragon/www/Angular/Fuse/Angular-14/Fuse-Angular-14-Demo'
-alias fuse_14_starter='cl D:laragon/www/Angular/Fuse/Angular-14/Fuse-Angular-14-Starter'
+alias fuse_14='cl D:laragon/www/Angular/Fuse/Angular-14/Fuse-Angular-14/'
+alias fuse_14_demo='cl D:laragon/www/Angular/Fuse/Angular-14/Fuse-Angular-14-Demo/'
+alias fuse_14_starter='cl D:laragon/www/Angular/Fuse/Angular-14/Fuse-Angular-14-Starter/'
 
 # Fuse-15
-alias fuse_15='cl D:laragon/www/Angular/Fuse/Angular-15/Fuse-Angular-15'
-alias fuse_15_demo='cl D:laragon/www/Angular/Fuse/Angular-15/Fuse-Angular-15-Demo'
-alias fuse_15_starter='cl D:laragon/www/Angular/Fuse/Angular-15/Fuse-Angular-15-Starter'
+alias fuse_15='cl D:laragon/www/Angular/Fuse/Angular-15/Fuse-Angular-15/'
+alias fuse_15_demo='cl D:laragon/www/Angular/Fuse/Angular-15/Fuse-Angular-15-Demo/'
+alias fuse_15_starter='cl D:laragon/www/Angular/Fuse/Angular-15/Fuse-Angular-15-Starter/'
 
 # Landing Page
-alias asc='cl D:laragon/www/Angular/ASC-Legal'
-alias selfown='cl D:laragon/www/Angular/Selfown-Angular14-TailwindCSS'
+alias asc='cl D:laragon/www/Angular/ASC-Legal/'
+alias selfown='cl D:laragon/www/Angular/Selfown-Angular14-TailwindCSS/'
 
 # Envato Element Angular Landing Page
 alias envato-ng='cl D:laragon/www/Angular/Envato-Element-Templates/'
 # alias finsa1='cl D:laragon/www/Angular/Envato-Element-Templates/finsa-ng'
-alias finsa='cl D:laragon/www/Angular/Envato-Element-Templates/Finsa/Angular-Template'
-alias apzie='cl D:laragon/www/Angular/Envato-Element-Templates/apzie-ng'
-alias dizo='cl D:laragon/www/Angular/Envato-Element-Templates/dizo-ng'
-alias ervy='cl D:laragon/www/Angular/Envato-Element-Templates/ervy-ng'
-alias ezlu='cl D:laragon/www/Angular/Envato-Element-Templates/ezlu-ng'
-alias kiaz='cl D:laragon/www/Angular/Envato-Element-Templates/kiaz-ng'
-alias levi='cl D:laragon/www/Angular/Envato-Element-Templates/levi-ng'
-alias lufz='cl D:laragon/www/Angular/Envato-Element-Templates/lufz-ng'
-alias peof='cl D:laragon/www/Angular/Envato-Element-Templates/peof-ng'
-alias pilar='cl D:laragon/www/Angular/Envato-Element-Templates/pilar-ng'
-alias ribo='cl D:laragon/www/Angular/Envato-Element-Templates/ribo-ng'
+alias finsa='cl D:laragon/www/Angular/Envato-Element-Templates/Finsa/Angular-Template/'
+alias apzie='cl D:laragon/www/Angular/Envato-Element-Templates/apzie-ng/'
+alias dizo='cl D:laragon/www/Angular/Envato-Element-Templates/dizo-ng/'
+alias ervy='cl D:laragon/www/Angular/Envato-Element-Templates/ervy-ng/'
+alias ezlu='cl D:laragon/www/Angular/Envato-Element-Templates/ezlu-ng/'
+alias kiaz='cl D:laragon/www/Angular/Envato-Element-Templates/kiaz-ng/'
+alias levi='cl D:laragon/www/Angular/Envato-Element-Templates/levi-ng/'
+alias lufz='cl D:laragon/www/Angular/Envato-Element-Templates/lufz-ng/'
+alias peof='cl D:laragon/www/Angular/Envato-Element-Templates/peof-ng/'
+alias pilar='cl D:laragon/www/Angular/Envato-Element-Templates/pilar-ng/'
+alias ribo='cl D:laragon/www/Angular/Envato-Element-Templates/ribo-ng/'
 
 ######### End Angular #########
 
 ######### Start Ionic #########
-alias ionic_boilerplate='cl D:laragon/www/Ionic/ionic-boilerplate'
-alias ionic_todolist='cl D:laragon/www/Ionic/ionic-to-do-list-training'
+alias ionic_boilerplate='cl D:laragon/www/Ionic/ionic-boilerplate/'
+alias ionic_todolist='cl D:laragon/www/Ionic/ionic-to-do-list-training/'
 ######### End Ionic #########
 
 ######### Start NextJS #########
-alias bishen-dev='cl D:laragon/www/NextJS/bishen-dev'
-alias bishen-dev-v2='cl D:laragon/www/NextJS/bishen-dev-v2'
-alias clonlee-tech='cl D:laragon/www/NextJS/clonlee-tech'
-alias avo='cl D:laragon/www/NextJS/avo'
-alias rustic='cl D:laragon/www/NextJS/rustic'
-alias vie='cl D:laragon/www/NextJS/vie-react-creative-portfolio'
+alias bishen-dev='cl D:laragon/www/NextJS/bishen-dev/'
+alias bishen-dev-v2='cl D:laragon/www/NextJS/bishen-dev-v2/'
+alias clonlee-tech='cl D:laragon/www/NextJS/clonlee-tech/'
+alias avo='cl D:laragon/www/NextJS/avo/'
+alias rustic='cl D:laragon/www/NextJS/rustic/'
+alias vie='cl D:laragon/www/NextJS/vie-react-creative-portfolio/'
 ######### End NextJS #########
 
 # alias pull_all='bishen-dev && delete_node && gfp && yarn && template_1 && delete_node && gfp && yarn && template_2 && delete_node && gfp && yarn && template_3 && delete_node && gfp && yarn && boilerplate && delete_node && gfp && yarn && asc && delete_node && gfp && yarn && selfown && delete_node && gfp && selfown && delete_node && gfp && yarn && fuse_13_demo && delete_node && gfp && yarn && fuse_13_skeleton && delete_node && gfp && yarn && fuse_13_starter && delete_node && gfp && yarn && fuse_14_demo && delete_node && gfp && yarn && fuse_14_starter && delete_node && gfp && yarn'
@@ -380,8 +380,6 @@ alias gita='git add -A && git status -s'
 alias gitcom='git commit -am'
 alias gitacom='git add -A && git commit -am'
 alias gitc='git checkout'
-alias gitcuat='git checkout inbranch-uat'
-alias gitcpreprod='git checkout inbranch-preprod'
 alias gitcm='git checkout main'
 alias gitcd='git checkout develop'
 alias gitcnd='git checkout new-develop'
