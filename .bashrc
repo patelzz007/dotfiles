@@ -51,6 +51,15 @@ date '+%H:%M:%S %p / %A / %B %-d, %Y'
 #---------------------------------------------------------------------------------------------------------------------------------------
 #   2.  MAKE TERMINAL BETTER
 #---------------------------------------------------------------------------------------------------------------------------------------
+
+# Editing common files
+alias edithosts='atom /etc/hosts'                                               # Edit hosts file
+alias editbash='code ~/.bashrc'                                                 # Edit bashrc
+alias editzsh='code ~/.zshrc'                                                   # Edit zshrc
+alias editsshconfig='code ~/.ssh/config'                                        # Edit ssh config file
+alias editsharedbash='code ~/Dropbox/Preferences/home/.shared_bash_profile'     # Edit shared bash profile in Dropbox
+
+# Navigation Shortcuts
 alias x='exit'
 alias ..='cl ..'
 alias ...='cl ../../'
@@ -70,46 +79,43 @@ alias react='cl D:laragon/www/ReactJS/'
 alias next='cl D:laragon/www/NextJS/'
 alias laravel123='cl D:laragon/www/Laravel/'
 alias nest='cl D:laragon/www/NestJS/'
-alias pull_all_123='pull_all_repos'
-alias pull_all_noinstall_123='pull_all_repo_noinstall'
-alias ncu_all_repo_123='ncu_all_repo'
 
 
 ######### Start Angular #########
-# HLBB Templates
-alias template_1='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-1/'
-alias template_2='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-2/'
-alias template_3='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-3/'
-alias template_4='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-4/'
+### HLBB Templates ###
+alias ng_template_1='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-1/'
+alias ng_template_2='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-2/'
+alias ng_template_3='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-3/'
+alias ng_template_4='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-Tailwind-Template-4/'
 
-# Angular Boilerplate
+### Angular Boilerplate ###
 alias boilerplate_14='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-14-Tailwind-Boilerplate/'
 alias boilerplate_15='cl D:laragon/www/Angular/Angular-Tailwind-Templates/Angular-15-Tailwind-Boilerplate/'
 
-# Fuse-12
+### Fuse-12 ###
 alias fuse_12_demo='cl D:laragon/www/Angular/Fuse/Angular-12/Fuse-Angular-12-Demo/'
 alias fuse_12_starter='cl D:laragon/www/Angular/Fuse/Angular-12/Fuse-Angular-12-Starter/'
 
-# Fuse-13
+### Fuse-13 ###
 alias fuse_13_demo='cl D:laragon/www/Angular/Fuse/Angular-13/Fuse-Angular-13-Demo/'
 alias fuse_13_skeleton='cl D:laragon/www/Angular/Fuse/Angular-13/Fuse-Angular-13-Skeleton/'
 alias fuse_13_starter='cl D:laragon/www/Angular/Fuse/Angular-13/Fuse-Angular-13-Starter/'
 
-# Fuse-14
+### Fuse-14 ###
 alias fuse_14='cl D:laragon/www/Angular/Fuse/Angular-14/Fuse-Angular-14/'
 alias fuse_14_demo='cl D:laragon/www/Angular/Fuse/Angular-14/Fuse-Angular-14-Demo/'
 alias fuse_14_starter='cl D:laragon/www/Angular/Fuse/Angular-14/Fuse-Angular-14-Starter/'
 
-# Fuse-15
+### Fuse-15 ###
 alias fuse_15='cl D:laragon/www/Angular/Fuse/Angular-15/Fuse-Angular-15/'
 alias fuse_15_demo='cl D:laragon/www/Angular/Fuse/Angular-15/Fuse-Angular-15-Demo/'
 alias fuse_15_starter='cl D:laragon/www/Angular/Fuse/Angular-15/Fuse-Angular-15-Starter/'
 
-# Landing Page
+### Landing Page ###
 alias asc='cl D:laragon/www/Angular/ASC-Legal/'
 alias selfown='cl D:laragon/www/Angular/Selfown-Angular14-TailwindCSS/'
 
-# Envato Element Angular Landing Page
+### Envato Element Angular Landing Page ###
 alias envato-ng='cl D:laragon/www/Angular/Envato-Element-Templates/'
 # alias finsa1='cl D:laragon/www/Angular/Envato-Element-Templates/finsa-ng'
 alias finsa='cl D:laragon/www/Angular/Envato-Element-Templates/Finsa/Angular-Template/'
@@ -123,7 +129,6 @@ alias lufz='cl D:laragon/www/Angular/Envato-Element-Templates/lufz-ng/'
 alias peof='cl D:laragon/www/Angular/Envato-Element-Templates/peof-ng/'
 alias pilar='cl D:laragon/www/Angular/Envato-Element-Templates/pilar-ng/'
 alias ribo='cl D:laragon/www/Angular/Envato-Element-Templates/ribo-ng/'
-
 ######### End Angular #########
 
 ######### Start Ionic #########
@@ -138,10 +143,13 @@ alias clonlee-tech='cl D:laragon/www/NextJS/clonlee-tech/'
 alias avo='cl D:laragon/www/NextJS/avo/'
 alias rustic='cl D:laragon/www/NextJS/rustic/'
 alias vie='cl D:laragon/www/NextJS/vie-react-creative-portfolio/'
-######### End NextJS #########
 
-# alias pull_all='bishen-dev && delete_node && gfp && yarn && template_1 && delete_node && gfp && yarn && template_2 && delete_node && gfp && yarn && template_3 && delete_node && gfp && yarn && boilerplate && delete_node && gfp && yarn && asc && delete_node && gfp && yarn && selfown && delete_node && gfp && selfown && delete_node && gfp && yarn && fuse_13_demo && delete_node && gfp && yarn && fuse_13_skeleton && delete_node && gfp && yarn && fuse_13_starter && delete_node && gfp && yarn && fuse_14_demo && delete_node && gfp && yarn && fuse_14_starter && delete_node && gfp && yarn'
-# alias pull_all_no_install='bishen-dev && delete_node && gfp && template_1 && delete_node && gfp && template_2 && delete_node && gfp && template_3 && delete_node && gfp && boilerplate && delete_node && gfp && asc && delete_node && gfp && selfown && delete_node && gfp && fuse_13_demo && delete_node && gfp && fuse_13_skeleton && delete_node && gfp && fuse_13_starter && delete_node && gfp && fuse_14_demo && delete_node && gfp && fuse_14_starter && delete_node && gfp'
+
+### NextJS Dashboard ###
+alias next_template_1='cl D:laragon/www/NextJS/NextJS-Tailwind-Dashboard/'
+### NextJS Dashboard ###
+
+######### End NextJS #########
 
 cl() { cd "$@" && ls -lah; }
 
@@ -611,260 +619,6 @@ gitio() {
 
     curl -i https://git.io -F "url=$1" -F "code=$2"
     printf "\n"
-}
-
-pull_all_repos() {
-    figlet 'Ionic Boilerplate Started'
-    ionic_boilerplate && delete_node && gfp && yarn
-    figlet 'Ionic Boilerplate Completed'
-
-    figlet 'Ionic To Do List Started'
-    ionic_todolist && delete_node && gfp && yarn
-    figlet 'Ionic To Do List Completed'
-
-    figlet 'Template 1 Started'
-    template_1 && delete_node && gfp && yarn
-    figlet 'Template 1 Completed'
-
-    figlet 'Template 2 Started'
-    template_2 && delete_node && gfp && yarn
-    figlet 'Template 2 Completed'
-
-    figlet 'Template 3 Started'
-    template_3 && delete_node && gfp && yarn
-    figlet 'Template 3 Completed'
-
-    figlet 'Template 4 Started'
-    template_4 && delete_node && gfp && yarn
-    figlet 'Template 4 Completed'
-
-    figlet 'Boilerplate Started'
-    boilerplate && delete_node && gfp && yarn
-    figlet 'Boilerplate Completed'
-
-    figlet 'Fuse 13 Demo Started'
-    fuse_13_demo && delete_node && gfp && yarn
-    figlet 'Fuse 13 Demo Completed'
-
-    figlet 'Fuse 13 Starter Started'
-    fuse_13_starter && delete_node && gfp && yarn
-    figlet 'Fuse 13 Starter Completed'
-
-    figlet 'Fuse 13 Skeleton Started'
-    fuse_13_skeleton && delete_node && gfp && yarn
-    figlet 'Fuse 13 Skeleton Completed'
-
-    figlet 'Fuse 14 Started'
-    fuse_14 && delete_node && gfp && yarn
-    figlet 'Fuse 14 Completed'
-
-    figlet 'Fuse 14 Demo Started'
-    fuse_14_demo && delete_node && gfp && yarn
-    figlet 'Fuse 14 Demo Completed'
-
-    figlet 'Fuse 14 Starter Started'
-    fuse_14_starter && delete_node && gfp && yarn
-    figlet 'Fuse 14 Starter Completed'
-
-    figlet 'ASC Started'
-    asc && delete_node && gfp && yarn
-    figlet 'ASC Completed'
-
-    figlet 'SelfOwn Started'
-    selfown && delete_node && gfp && yarn
-    figlet 'SelfOwn Completed'
-
-    figlet 'Avo Started'
-    avo && delete_node && gfp && yarn
-    figlet 'Avo Completed'
-
-    figlet 'Bishen-Dev Started'
-    bishen-dev && delete_node && gfp && yarn
-    figlet 'Bishen-Dev Completed'
-
-    figlet 'Bishen-Dev-v2 Started'
-    bishen-dev-v2 && delete_node && gfp && yarn
-    figlet 'Bishen-Dev-v2 Completed'
-
-    figlet 'Clonlee Tech Started'
-    clonlee-tech && delete_node && gfp && yarn
-    figlet 'Clonlee Tech Completed'
-
-    figlet 'Rustic Started'
-    rustic && delete_node && gfp && yarn
-    figlet 'Rustic Completed'
-
-    figlet 'Vie Started'
-    vie && delete_node && gfp && yarn
-    figlet 'Vie Completed'
-}
-
-pull_all_repo_noinstall() {
-    figlet 'Ionic Boilerplate Started'
-    ionic_boilerplate && delete_node && gfp 
-    figlet 'Ionic Boilerplate Completed'
-
-    figlet 'Ionic To Do List Started'
-    ionic_todolist && delete_node && gfp 
-    figlet 'Ionic To Do List Completed'
-
-    figlet 'Template 1 Started'
-    template_1 && delete_node && gfp 
-    figlet 'Template 1 Completed'
-
-    figlet 'Template 2 Started'
-    template_2 && delete_node && gfp 
-    figlet 'Template 2 Completed'
-
-    figlet 'Template 3 Started'
-    template_3 && delete_node && gfp 
-    figlet 'Template 3 Completed'
-
-    figlet 'Template 4 Started'
-    template_4 && delete_node && gfp 
-    figlet 'Template 4 Completed'
-
-    figlet 'Boilerplate Started'
-    boilerplate && delete_node && gfp 
-    figlet 'Boilerplate Completed'
-
-    figlet 'Fuse 13 Demo Started'
-    fuse_13_demo && delete_node && gfp 
-    figlet 'Fuse 13 Demo Completed'
-
-    figlet 'Fuse 13 Starter Started'
-    fuse_13_starter && delete_node && gfp 
-    figlet 'Fuse 13 Starter Completed'
-
-    figlet 'Fuse 13 Skeleton Started'
-    fuse_13_skeleton && delete_node && gfp 
-    figlet 'Fuse 13 Skeleton Completed'
-
-    figlet 'Fuse 14 Started'
-    fuse_14 && delete_node && gfp 
-    figlet 'Fuse 14 Completed'
-
-    figlet 'Fuse 14 Demo Started'
-    fuse_14_demo && delete_node && gfp 
-    figlet 'Fuse 14 Demo Completed'
-
-    figlet 'Fuse 14 Starter Started'
-    fuse_14_starter && delete_node && gfp 
-    figlet 'Fuse 14 Starter Completed'
-
-    figlet 'ASC Started'
-    asc && delete_node && gfp 
-    figlet 'ASC Completed'
-
-    figlet 'SelfOwn Started'
-    selfown && delete_node && gfp 
-    figlet 'SelfOwn Completed'
-
-    figlet 'Avo Started'
-    avo && delete_node && gfp 
-    figlet 'Avo Completed'
-
-    figlet 'Bishen-Dev Started'
-    bishen-dev && delete_node && gfp 
-    figlet 'Bishen-Dev Completed'
-
-    figlet 'Bishen-Dev-v2 Started'
-    bishen-dev-v2 && delete_node && gfp
-    figlet 'Bishen-Dev-v2 Completed'
-
-    figlet 'Clonlee Tech Started'
-    clonlee-tech && delete_node && gfp
-    figlet 'Clonlee Tech Completed'
-
-    figlet 'Rustic Started'
-    rustic && delete_node && gfp 
-    figlet 'Rustic Completed'
-
-    figlet 'Vie Started'
-    vie && delete_node && gfp 
-    figlet 'Vie Completed'
-}
-
-ncu_all_repo() {
-    figlet 'Ionic Boilerplate Started'
-    ionic_boilerplate && ncu -t minor -u -x typescript,zone.js && gp "Update minor packages at package.json."
-    figlet 'Ionic Boilerplate Completed'
-
-    figlet 'Ionic To Do List Started'
-    ionic_todolist && ncu -t minor -u -x typescript,zone.js && gp "Update minor packages at package.json."
-    figlet 'Ionic To Do List Completed'
-
-    figlet 'Template 1 Started'
-    template_1 && ncu -t minor -u -x typescript,zone.js && gp "Update minor packages at package.json."
-    figlet 'Template 1 Completed'
-
-    figlet 'Template 2 Started'
-    template_2 && ncu -t minor -u -x typescript,zone.js && gp "Update minor packages at package.json."
-    figlet 'Template 2 Completed'
-
-    figlet 'Template 3 Started'
-    template_3 && ncu -t minor -u -x typescript,zone.js && gp "Update minor packages at package.json."
-    figlet 'Template 3 Completed'
-
-    figlet 'Template 4 Started'
-    template_4 && ncu -t minor -u -x typescript,zone.js && gp "Update minor packages at package.json."
-    figlet 'Template 4 Completed'
-
-    figlet 'Boilerplate Started'
-    boilerplate && ncu -t minor -u -x typescript,zone.js && gp "Update minor packages at package.json."
-    figlet 'Boilerplate Completed'
-
-    figlet 'Fuse 13 Demo Started'
-    fuse_13_demo && ncu -t minor -u -x typescript,zone.js && gp "Update minor packages at package.json."
-    figlet 'Fuse 13 Demo Completed'
-
-    figlet 'Fuse 13 Starter Started'
-    fuse_13_starter && ncu -t minor -u -x typescript,zone.js && gp "Update minor packages at package.json."
-    figlet 'Fuse 13 Starter Completed'
-
-    figlet 'Fuse 13 Skeleton Started'
-    fuse_13_skeleton && ncu -t minor -u -x typescript,zone.js && gp "Update minor packages at package.json."
-    figlet 'Fuse 13 Skeleton Completed'
-
-    figlet 'Fuse 14 Started'
-    fuse_14 && ncu -t minor -u -x typescript,zone.js && gp "Update minor packages at package.json."
-    figlet 'Fuse 14 Completed'
-
-    figlet 'Fuse 14 Demo Started'
-    fuse_14_demo && ncu -t minor -u -x typescript,zone.js && gp "Update minor packages at package.json."
-    figlet 'Fuse 14 Demo Completed'
-
-    figlet 'Fuse 14 Starter Started'
-    fuse_14_starter && ncu -t minor -u -x typescript,zone.js && gp "Update minor packages at package.json."
-    figlet 'Fuse 14 Starter Completed'
-
-    figlet 'ASC Started'
-    asc && ncu -t minor -u -x typescript,zone.js && gp "Update minor packages at package.json."
-    figlet 'ASC Completed'
-
-    figlet 'SelfOwn Started'
-    selfown && ncu -t minor -u -x typescript,zone.js && gp "Update minor packages at package.json."
-    figlet 'SelfOwn Completed'
-
-    figlet 'Avo Started'
-    avo && ncu -u && gp "Update minor packages at package.json."
-    figlet 'Avo Completed'
-
-    figlet 'Bishen-Dev Started'
-    bishen-dev && ncu -u && gp "Update minor packages at package.json."
-    figlet 'Bishen-Dev Completed'
-
-    figlet 'Bishen-Dev-v2 Started'
-    bishen-dev-v2 && ncu -u && gp "Update minor packages at package.json."
-    figlet 'Bishen-Dev-v2 Completed'
-
-    figlet 'Clonlee Tech Started'
-    clonlee-tech && ncu -u && gp "Update minor packages at package.json."
-    figlet 'Clonlee Tech Completed'
-
-    figlet 'Rustic Started'
-    rustic && ncu -u && gp "Update minor packages at package.json."
-    figlet 'Rustic Completed'
 }
 
 # Set a specific color for the status of the Git repo

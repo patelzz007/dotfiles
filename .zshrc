@@ -186,14 +186,15 @@ dirdiff() { diff -u <( ls "$1" | sort)  <( ls "$2" | sort ); }                  
 
 # Editing common files
 alias edithosts='atom /etc/hosts'                                               # Edit hosts file
-alias editbash='code ~/.bash_profile'                                           # Edit bash profile
+alias editbash='code ~/.bashrc'                                                 # Edit bashrc
+alias editzsh='code ~/.zshrc'                                                   # Edit zshrc
 alias editsshconfig='code ~/.ssh/config'                                        # Edit ssh config file
 alias editsharedbash='code ~/Dropbox/Preferences/home/.shared_bash_profile'     # Edit shared bash profile in Dropbox
 
 # Navigation Shortcuts
 alias cls="clear"
 alias x="exit"
-alias ..='cl ..'
+alias ..='cl ../'
 alias ...='cl ../../'
 alias ....='cl ../../../'
 alias .....='cl ../../../../'
@@ -201,59 +202,60 @@ alias ......='cl ../../../../'
 alias .......='cl ../../../../../'
 alias ........='cl ../../../../../../'
 alias home='clear && cl ~ && ll'                                                                                                # Home directory
-alias desktop='cl ~/Desktop'           
+alias desktop='cl ~/Desktop/'           
 
-alias angular='cl ~/Desktop/Bishen/Angular'                                                                                     # Angular directory
-alias react='cl ~/Desktop/Bishen/ReactJS'                                                                                       # React directory
-alias laravel123='cl ~/Desktop/Bishen/Laravel'                                                                                  # Laravel directory
-alias ionic123='cl ~/Desktop/Bishen/Ionic'                                                                                      # Laravel directory
-alias next='cl ~/Desktop/Bishen/NextJS'                                                                                         # NextJS directory
-alias LP='cl ~/Desktop/Bishen/Landing-Page'                                                                                     # LP directory
-alias downloads='clear && cl ~/Downloads'                                                                                       # Downloads directory
+alias angular='cl ~/Desktop/Bishen/Angular/'                                                                                     # Angular directory
+alias react='cl ~/Desktop/Bishen/ReactJS/'                                                                                       # React directory
+alias laravel123='cl ~/Desktop/Bishen/Laravel/'                                                                                  # Laravel directory
+alias ionic123='cl ~/Desktop/Bishen/Ionic/'                                                                                      # Laravel directory
+alias next='cl ~/Desktop/Bishen/NextJS/'                                                                                         # NextJS directory
+alias LP='cl ~/Desktop/Bishen/Landing-Page/'                                                                                     # LP directory
+alias downloads='clear && cl ~/Downloads/'                                                                                       # Downloads directory
 alias delete_node='delete_node_queries'                                                                                         # Delete node_modules, .angular, .next, yarn.lock & package-lock.json files
 
 
-# Start NextJS
-alias bishen='cl ~/Desktop/Bishen/NextJS/Bishen-Dev'
-alias avo='cl ~/Desktop/Bishen/NextJS/Avo-React-Creative-Agency-Showcase-Portfolio'
-alias rustic='cl ~/Desktop/Bishen/NextJS/Rustic-Business-Template'
-alias next_template_1='cl ~/Desktop/Bishen/NextJS/NextJS-Tailwind-Dashboard'
-# End NextJS
+######### Start NextJS #########
+alias bishen='cl ~/Desktop/Bishen/NextJS/Bishen-Dev/'
+alias avo='cl ~/Desktop/Bishen/NextJS/Avo-React-Creative-Agency-Showcase-Portfolio/'
+alias rustic='cl ~/Desktop/Bishen/NextJS/Rustic-Business-Template/'
+alias next_template_1='cl ~/Desktop/Bishen/NextJS/NextJS-Tailwind-Dashboard/'
 
-# Start Angular
-alias ng_template_1='cl ~/Desktop/Bishen/Angular/Angular-Tailwind-Template-1'                                                      # Angular-Tailwind-Template-1 directory
-alias ng_template_2='cl ~/Desktop/Bishen/Angular/Angular-Tailwind-Template-2'                                                      # Angular-Tailwind-Template-2 directory
-alias ng_template_3='cl ~/Desktop/Bishen/Angular/Angular-Tailwind-Template-3'                                                      # Angular-Tailwind-Template-3 directory
-alias ng_template_4='cl ~/Desktop/Bishen/Angular/Angular-Tailwind-Template-4'                                                      # Angular-Tailwind-Template-3 directory
-alias ng_ecommerce='cl ~/Desktop/Bishen/Angular/Angular-14-ECommerce'                                                      # Angular-Tailwind-Template-3 directory
-alias boilerplate_14='cl ~/Desktop/Bishen/Angular/Angular-14-Tailwind-Boilerplate'                                                    # Angular-14-Tailwind-Boilerplate
-alias boilerplate_15='cl ~/Desktop/Bishen/Angular/Angular-15-Tailwind-Boilerplate'                                                    # Angular-15-Tailwind-Boilerplate
-alias asc='cl ~/Desktop/Bishen/Angular/ASC-Legal'                                                                               # ASC-Legal directory
-alias selfown='cl ~/Desktop/Bishen/Angular/Selfown-Angular14-TailwindCSS'                                                       # Self Own Landing Page directory
-alias fuse_rewrite='cl ~/Desktop/Bishen/Angular/Fuse/Fuse-14-Rewrite'
 
-alias fuse_13_demo='cl ~/Desktop/Bishen/Angular/Fuse/Angular-13/Fuse-Angular-13-Demo'
-alias fuse_13_skeleton='cl ~/Desktop/Bishen/Angular/Fuse/Angular-13/Fuse-Angular-13-Skeleton'
-alias fuse_13_starter='cl ~/Desktop/Bishen/Angular/Fuse/Angular-13/Fuse-Angular-13-Starter'
+### NextJS Dashboard ###
+alias next_template_1='cl ~/Desktop/Bishen/NextJS/NextJS-Tailwind-Dashboard/'
+### NextJS Dashboard ###
+######### End NextJS #########
 
-alias fuse_14='cl ~/Desktop/Bishen/Angular/Fuse/Angular-14/Fuse-Angular-14'
-alias fuse_14_demo='cl ~/Desktop/Bishen/Angular/Fuse/Angular-14/Fuse-Angular-14-Demo'
-alias fuse_14_starter='cl ~/Desktop/Bishen/Angular/Fuse/Angular-14/Fuse-Angular-14-Starter'
+######### Start Angular #########
+alias ng_template_1='cl ~/Desktop/Bishen/Angular/Angular-Tailwind-Template-1/'                                                      # Angular-Tailwind-Template-1 directory
+alias ng_template_2='cl ~/Desktop/Bishen/Angular/Angular-Tailwind-Template-2/'                                                      # Angular-Tailwind-Template-2 directory
+alias ng_template_3='cl ~/Desktop/Bishen/Angular/Angular-Tailwind-Template-3/'                                                      # Angular-Tailwind-Template-3 directory
+alias ng_template_4='cl ~/Desktop/Bishen/Angular/Angular-Tailwind-Template-4/'                                                      # Angular-Tailwind-Template-3 directory
+alias ng_ecommerce='cl ~/Desktop/Bishen/Angular/Angular-14-ECommerce/'                                                              # Angular-Tailwind-Template-3 directory
+alias boilerplate_14='cl ~/Desktop/Bishen/Angular/Angular-14-Tailwind-Boilerplate/'                                                 # Angular-14-Tailwind-Boilerplate
+alias boilerplate_15='cl ~/Desktop/Bishen/Angular/Angular-15-Tailwind-Boilerplate/'                                                 # Angular-15-Tailwind-Boilerplate
+alias asc='cl ~/Desktop/Bishen/Angular/ASC-Legal/'                                                                                   # ASC-Legal directory
+alias selfown='cl ~/Desktop/Bishen/Angular/Selfown-Angular14-TailwindCSS/'                                                           # Self Own Landing Page directory
+alias fuse_rewrite='cl ~/Desktop/Bishen/Angular/Fuse/Fuse-14-Rewrite/'
 
-alias fuse_15_demo='cl ~/Desktop/Bishen/Angular/Fuse/Angular-15/Fuse-Angular-15-Demo'
-alias fuse_15_starter='cl ~/Desktop/Bishen/Angular/Fuse/Angular-15/Fuse-Angular-15-Starter'
-alias fuse_15_dev_starter='cl ~/Desktop/Bishen/Angular/Fuse/Angular-15/Fuse-Angular-15-Dev-Starter'
-# End Angular
+alias fuse_13_demo='cl ~/Desktop/Bishen/Angular/Fuse/Angular-13/Fuse-Angular-13-Demo/'
+alias fuse_13_skeleton='cl ~/Desktop/Bishen/Angular/Fuse/Angular-13/Fuse-Angular-13-Skeleton/'
+alias fuse_13_starter='cl ~/Desktop/Bishen/Angular/Fuse/Angular-13/Fuse-Angular-13-Starter/'
 
-# Start Ionic
-alias ionic_boilerplate='cl ~/Desktop/Bishen/Ionic/ionic-boilerplate'
-alias ionic_todolist='cl ~/Desktop/Bishen/Ionic/ionic-to-do-list-training'
-# End Ionic
+alias fuse_14='cl ~/Desktop/Bishen/Angular/Fuse/Angular-14/Fuse-Angular-14/'
+alias fuse_14_demo='cl ~/Desktop/Bishen/Angular/Fuse/Angular-14/Fuse-Angular-14-Demo/'
+alias fuse_14_starter='cl ~/Desktop/Bishen/Angular/Fuse/Angular-14/Fuse-Angular-14-Starter/'
 
-alias pull_all_123='pull_all_repos'
-alias pull_all_noinstall_123='pull_all_repo_noinstall'
-# alias pull_all='bishen && delete_node && gfp && yarn && ng_template_1 && delete_node && gfp && yarn && ng_template_2 && delete_node && gfp && yarn && ng_template_3 && delete_node && gfp && yarn && boilerplate && delete_node && gfp && yarn && asc && delete_node && gfp && yarn && selfown && delete_node && gfp && yarn && fuse_13_demo && delete_node && gfp && yarn && fuse_13_skeleton && delete_node && gfp && yarn && fuse_13_starter && delete_node && gfp && yarn && fuse_14 && delete_node && gfp && yarn && fuse_14_starter && delete_node && gfp && yarn && fuse_14_demo && delete_node && gfp && yarn && fuse_15_demo && delete_node && gfp && yarn && fuse_15_starter && delete_node && gfp && yarn && fuse_15_dev_starter && delete_node && gfp && yarn'
-# alias pull_all_noinstall_123='bishen && delete_node && gfp && ng_template_1 && delete_node && gfp && ng_template_2 && delete_node && gfp && ng_template_3 && delete_node && gfp && boilerplate && delete_node && gfp && asc && delete_node && gfp && selfown && delete_node && gfp && fuse_13_demo && delete_node && gfp && fuse_13_skeleton && delete_node && gfp && fuse_13_starter && delete_node && gfp && fuse_14 && delete_node && gfp && fuse_14_starter && delete_node && gfp && fuse_14_demo && delete_node && gfp && fuse_15_demo && delete_node && gfp && fuse_15_starter && delete_node && gfp && fuse_15_dev_starter && delete_node && gfp'
+alias fuse_15_demo='cl ~/Desktop/Bishen/Angular/Fuse/Angular-15/Fuse-Angular-15-Demo/'
+alias fuse_15_starter='cl ~/Desktop/Bishen/Angular/Fuse/Angular-15/Fuse-Angular-15-Starter/'
+alias fuse_15_dev_starter='cl ~/Desktop/Bishen/Angular/Fuse/Angular-15/Fuse-Angular-15-Dev-Starter/'
+######### End Angular #########
+
+######### Start Ionic #########
+alias ionic_boilerplate='cl ~/Desktop/Bishen/Ionic/ionic-boilerplate/'
+alias ionic_todolist='cl ~/Desktop/Bishen/Ionic/ionic-to-do-list-training/'
+######### End Angular #########
+
 cs() { cd "$@" &&  ls; }                                                                                    # Enter directory and list contents with ls
 cl() { cd "$@" && ll; }                                                                                     # Enter directory and list contents with ll
 site() { clear && cl $HOME/sites/"$@"; }                                                                    # Access site folders easier
@@ -484,7 +486,8 @@ dl-website() {
 #   5.  GIT SHORTCUTS
 #---------------------------------------------------------------------------------------------------------------------------------------
 
-alias config_personal='git config user.name "Bishen Patel" && git config user.email "patelzz007@gmail.com"'
+alias config_HLBB='git config user.name "Bishen Patel" && git config user.email "tbishen@hlbb.hongleong.com.my" '
+alias config_personal=' git config user.name "Bishen Patel" && git config user.email "patelzz007@gmail.com" '
 alias init='git init && git config user.name "Bishen Patel" && git config user.email "patelzz007@gmail.com"'
 alias gitstats='git-stats'
 alias gits='git status -s'
@@ -716,284 +719,6 @@ gitio() {
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
-
-pull_all_repos() {
-
-    echo "\e[32m"
-    figlet 'Ionic Boilerplate Started'
-    echo "\e[0m"
-    ionic_boilerplate && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'Ionic Boilerplate Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Ionic To Do List Started'
-    echo "\e[0m"
-    ionic_todolist && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'Ionic To Do List Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Bishen Started'
-    echo "\e[0m"
-    bishen && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'Bishen Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Avo Started'
-    echo "\e[0m"
-    avo && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'Avo Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Rustic Started'
-    echo "\e[0m"
-    rustic && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'Rustic Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Template 1 Started'
-    echo "\e[0m"
-    ng_template_1 && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'Template 1 Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Template 2 Started'
-    echo "\e[0m"
-    ng_template_2 && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'Template 2 Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Template 3 Started'
-    echo "\e[0m"
-    ng_template_3 && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'Template 3 Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Boilerplate Started'
-    echo "\e[0m"
-    boilerplate && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'Boilerplate Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Fuse 13 Demo Started'
-    echo "\e[0m"
-    fuse_13_demo && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'Fuse 13 Demo Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Fuse 13 Starter Started'
-    echo "\e[0m"
-    fuse_13_starter && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'Fuse 13 Starter Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Fuse 13 Skeleton Started'
-    echo "\e[0m"
-    fuse_13_skeleton && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'Fuse 13 Skeleton Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Fuse 14 Demo Started'
-    echo "\e[0m"
-    fuse_14_demo && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'Fuse 14 Demo Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Fuse 14 Starter Started'
-    echo "\e[0m"
-    fuse_14_starter && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'Fuse 14 Starter Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'ASC Started'
-    echo "\e[0m"
-    asc && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'ASC Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'SelfOwn Started'
-    echo "\e[0m"
-    selfown && delete_node && gfp && yarn
-    echo "\e[32m"
-    figlet 'SelfOwn Completed'
-    echo "\e[0m"
-}
-
-pull_all_repo_noinstall() {
-
-    echo "\e[32m"
-    figlet 'Ionic Boilerplate Started'
-    echo "\e[0m"
-    ionic_boilerplate && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Ionic Boilerplate Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Ionic To Do List Started'
-    echo "\e[0m"
-    ionic_todolist && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Ionic To Do List Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Bishen Started'
-    echo "\e[0m"
-    bishen && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Bishen Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Avo Started'
-    echo "\e[0m"
-    avo && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Avo Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Rustic Started'
-    echo "\e[0m"
-    rustic && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Rustic Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Template 1 Started'
-    echo "\e[0m"
-    ng_template_1 && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Template 1 Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Template 2 Started'
-    echo "\e[0m"
-    ng_template_2 && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Template 2 Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Template 3 Started'
-    echo "\e[0m"
-    ng_template_3 && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Template 3 Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Boilerplate Started'
-    echo "\e[0m"
-    boilerplate && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Boilerplate Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Fuse 13 Demo Started'
-    echo "\e[0m"
-    fuse_13_demo && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Fuse 13 Demo Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Fuse 13 Starter Started'
-    echo "\e[0m"
-    fuse_13_starter && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Fuse 13 Starter Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Fuse 13 Skeleton Started'
-    echo "\e[0m"
-    fuse_13_skeleton && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Fuse 13 Skeleton Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Fuse 14 Demo Started'
-    echo "\e[0m"
-    fuse_14_demo && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Fuse 14 Demo Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Fuse 14 Starter Started'
-    echo "\e[0m"
-    fuse_14_starter && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Fuse 14 Starter Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Fuse 15 Demo Started'
-    echo "\e[0m"
-    fuse_15_demo && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Fuse 15 Demo Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'Fuse 15 Starter Started'
-    echo "\e[0m"
-    fuse_15_starter && delete_node && gfp
-    echo "\e[32m"
-    figlet 'Fuse 15 Starter Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'ASC Started'
-    echo "\e[0m"
-    asc && delete_node && gfp
-    echo "\e[32m"
-    figlet 'ASC Completed'
-    echo "\e[0m"
-
-    echo "\e[32m"
-    figlet 'SelfOwn Started'
-    echo "\e[0m"
-    selfown && delete_node && gfp
-    echo "\e[32m"
-    figlet 'SelfOwn Completed'
-    echo "\e[0m"
-}
 
 unsetopt INTERACTIVE_COMMENTS
 unsetopt BAD_PATTERN
