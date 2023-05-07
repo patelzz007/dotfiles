@@ -467,6 +467,14 @@ delete_node_modules () {
     else
         echo -e "${CYANB}yarn.lock not found.${RESET}"
     fi
+
+    if [ -f pnpm-lock.yaml ]; then
+        echo -e "${BLUEB}Deleting pnpm-lock.yaml.${RESET}"
+        rm -rf pnpm-lock.yaml
+        echo -e "${BLUEB}Done deleting pnpm-lock.yaml.${RESET}"
+    else
+        echo -e "${CYANB}pnpm-lock.yaml not found.${RESET}"
+    fi
     
     if [ -f yarn-error.log ]; then
         echo -e "${PURPLEB}Deleting yarn-error.log.${RESET}"

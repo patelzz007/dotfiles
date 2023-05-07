@@ -574,6 +574,14 @@ delete_node_queries() {
         echo -e "${CYANB}yarn.lock not found.${NC}"
     fi
 
+    if [ -f pnpm-lock.yaml ]; then
+        echo -e "${BLUEB}Deleting pnpm-lock.yaml.${RESET}"
+        rm -rf pnpm-lock.yaml
+        echo -e "${BLUEB}Done deleting pnpm-lock.yaml.${RESET}"
+    else
+        echo -e "${CYANB}pnpm-lock.yaml not found.${RESET}"
+    fi
+    
     if [ -f yarn-error.log ]; then 
         echo -e "${BLUEB}Deleting yarn-error.lock.${NC}"
         rm -rf yarn-error.log
