@@ -15,7 +15,6 @@ export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/bin:$PATH
 export JAVA_HOME=$(/usr/libexec/java_home)
 
-
 export ANDROID_HOME="/Users/patelzz007/Library/Android/sdk"
 export PATH="${ANDROID_HOME}/platform-tools:${PATH}"
 export PATH="${ANDROID_HOME}/tools:${PATH}"
