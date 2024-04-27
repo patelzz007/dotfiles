@@ -1,19 +1,40 @@
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/patelzz007/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 eval `ssh-agent -s`
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+export PATH="$PATH:$HOME/Desktop/Bishen/flutter/bin"
+export PATH="${HOME}/Library/Android/sdk/tools:${HOME}/Library/Android/sdk/platform-tools:${PATH}"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export GEM_HOME=$HOME/.gem
+export PATH=$GEM_HOME/bin:$PATH
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+
+export ANDROID_HOME="/Users/patelzz007/Library/Android/sdk"
+export PATH="${ANDROID_HOME}/platform-tools:${PATH}"
+export PATH="${ANDROID_HOME}/tools:${PATH}"
+export PATH="${ANDROID_HOME}/tools/bin:${PATH}"
+
+export PATH=$PATH:/Library/PostgreSQL/16/bin
+# psql postgres --username=<YOUR_USERNAME_HERE>
+# USERNAME -- PASSWORD
+# postgres -- HelloWorld_007
+# patelzz007 -- HelloWorld_007
+
+export PATH="/usr/local/mysql/bin:$PATH"
+# USERNAME -- PASSWORD
+# root -- HelloWorld_007
+# patelzz007 -- HelloWorld_007
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export PATH="/opt/homebrew/bin:$PATH"
-
-# Composer
-export PATH=$PATH:$HOME/.composer/vendor/bin
-
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -110,8 +131,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# get colors on ls in emacs!
 
 #---------------------------------------------------------------------------------------------------------------------------------------
 #   1.  ENVIRONMENT SETUP
@@ -247,8 +266,22 @@ alias fuse_14_demo='cl ~/Desktop/Bishen/Angular/Fuse/Angular-14/Fuse-Angular-14-
 alias fuse_14_starter='cl ~/Desktop/Bishen/Angular/Fuse/Angular-14/Fuse-Angular-14-Starter/'
 
 alias fuse_15_demo='cl ~/Desktop/Bishen/Angular/Fuse/Angular-15/Fuse-Angular-15-Demo/'
-alias fuse_15_starter='cl ~/Desktop/Bishen/Angular/Fuse/Angular-15/Fuse-Angular-15-Starter/'
 alias fuse_15_dev_starter='cl ~/Desktop/Bishen/Angular/Fuse/Angular-15/Fuse-Angular-15-Dev-Starter/'
+alias fuse_15_starter='cl ~/Desktop/Bishen/Angular/Fuse/Angular-15/Fuse-Angular-15-Starter/'
+
+alias fuse_16_boilerplate='cl ~/Desktop/Bishen/Angular/Fuse_16/Fuse-Angular-16-Demo/'
+alias fuse_16_demo='cl ~/Desktop/Bishen/Angular/Fuse_16/Fuse-Angular-16-Demo/'
+alias fuse_16_dev_starter='cl ~/Desktop/Bishen/Angular/Fuse_16/Fuse-Angular-16-Dev-Starter/'
+alias fuse_16_starter='cl ~/Desktop/Bishen/Angular/Fuse_16/Fuse-Angular-16-Starter/'
+
+alias ng_17_boilerplate='cl ~/Desktop/Bishen/Angular/ng_17_boilerplate/'
+alias fuse_17_boilerplate='cl ~/Desktop/Bishen/Angular/Fuse_17/Fuse-17-Boilerplate/'
+alias fuse_17_demo='cl ~/Desktop/Bishen/Angular/Fuse_17/Fuse-17-Demo/'
+alias fuse_17_dev='cl ~/Desktop/Bishen/Angular/Fuse_17/Fuse-17-Dev/'
+alias fuse_17_starter='cl ~/Desktop/Bishen/Angular/Fuse_17/Fuse-17-Starter/'
+
+alias bidshido_admin='cl ~/Desktop/Bishen/BidShido/admin-panel/'
+alias bidshido_web='cl ~/Desktop/Bishen/BidShido/web/'
 ######### End Angular #########
 
 ######### Start Ionic #########
@@ -730,3 +763,6 @@ gitio() {
 
 unsetopt INTERACTIVE_COMMENTS
 unsetopt BAD_PATTERN
+
+# bun completions
+[ -s "/Users/patelzz007/.bun/_bun" ] && source "/Users/patelzz007/.bun/_bun"
