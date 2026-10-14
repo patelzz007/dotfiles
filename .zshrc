@@ -5,7 +5,7 @@ eval `ssh-agent -s`
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+# Welcome Home.
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$PATH:$HOME/Desktop/Bishen/flutter/bin"
