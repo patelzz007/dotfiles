@@ -25,7 +25,7 @@
   },
   "editor.fontLigatures": false,
   "editor.lineHeight": 23,
-  "editor.letterSpacing": 0.35,
+  "editor.letterSpacing": 0.3,
   "editor.fontSize": 14,
   "editor.fontFamily": "Iosevka Nerd Font Mono",
   "diffEditor.ignoreTrimWhitespace": false,
