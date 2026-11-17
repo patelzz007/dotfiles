@@ -19,8 +19,10 @@ export LSCOLORS=GxExBxBxFxegedabagacad
 # eza (ll, tree): two spaces between each file icon and its name, for readability.
 export EZA_ICON_SPACING=2
 
-# Man pages rendered with bat's syntax highlighting.
+# Man pages rendered with bat's syntax highlighting; bat (cat, previews) uses the
+# same GitHub Dark colours as git diffs (theme: dotfiles/bat/themes).
 if (( $+commands[bat] )); then
+    export BAT_THEME="GitHub Dark"
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
     export MANROFFOPT='-c'
 fi
