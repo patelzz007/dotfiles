@@ -19,6 +19,10 @@
     dark = true
     syntax-theme = GitHub Dark
 
+    # Scrollable with the mouse wheel / trackpad (--mouse). Short diffs print
+    # directly without opening the pager. Tip: hold Option to select text.
+    pager = less --RAW-CONTROL-CHARS --mouse --wheel-lines=3 --quit-if-one-screen
+
     # ---- Removed / added lines --------------------------------------------
     minus-style          = syntax "#25171c"     # removed line
     minus-non-emph-style = syntax "#25171c"

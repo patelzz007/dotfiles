@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/og-image.png" alt="dotfiles: a fast, modern macOS terminal with zsh, Oh My Zsh, fuzzy search and GitHub-style diffs" width="100%">
+</p>
+
 # dotfiles
 
 My macOS terminal setup: **zsh + Oh My Zsh**, split into one small file per
@@ -30,7 +34,7 @@ install and why" reference.
 | **zoxide** (replaces autojump) | `z rewardhub` jumps there, `zi` opens a picker. Your 62 autojump folders were imported, and `j` still works. |
 | **fzf-tab** | Tab completion becomes a fuzzy menu, with previews for `cd`, `git switch` and `kill`. |
 | **Prompt** | Oh My Zsh's `ys` theme. (starship was tried and removed; `starship.toml` in this repo is for Windows only.) |
-| **eza / bat / delta** | `ll` and `tree` show git status and icons, `cat` and man pages are syntax-highlighted, git diffs look like GitHub's dark theme (`git diff` = unified view, `gitdiffs` = split view). |
+| **eza / bat / delta** | `ll` and `tree` show git status and icons, `cat` and man pages are syntax-highlighted, git diffs look like GitHub's dark theme (`git diff` = unified view, `gitdiffs` = split view that scrolls and re-fits when you resize the window). |
 | **Dev helpers** | `killport 3000`, `ports`, `gco` (branch picker), `nr` (pick and run a script with the right package manager). `mkcd` already came with Oh My Zsh. |
 | **History** | 100k entries shared across terminals, no duplicates, and commands typed with a leading space aren't saved. |
 | **Repo** | `Brewfile`, `install.sh` (sets up a new Mac, safe to re-run), `README.md`, `git/delta.gitconfig`. |
@@ -255,7 +259,7 @@ Details in [Fuzzy search](#fuzzy-search-telescope-style).
 | `gitdbr <branch>` | Delete a branch locally and on origin |
 | `gitupstream <remote/branch>` | Set the upstream of the current branch |
 | `lg` | lazygit |
-| `gitdiffs` | `git diff` in GitHub's split view (old left, new right). Takes the same options, e.g. `gitdiffs --cached` |
+| `gitdiffs` | `git diff` in GitHub's split view (old left, new right). Scroll with the mouse wheel; resizing the window re-renders it to fit; narrow windows (< 140 columns) get the unified view, like GitHub on small screens. Takes the same options, e.g. `gitdiffs --cached`, `gitdiffs main` |
 
 **Aliases** (`main` or `master` is detected automatically where it says "main")
 
@@ -389,13 +393,18 @@ Vim. To use Neovim, add `export EDITOR=nvim` to `zsh/env.zsh`.
   |---|---|
   | Unified view (default) | `git diff`, `git show`, `git log -p` |
   | Split view | `gitdiffs` (old on the left, new on the right) |
+  | Switches to unified on narrow screens | `gitdiffs` does the same below 140 columns (`GITDIFFS_SPLIT_MIN_COLS`) |
+  | Page reflows when you resize the browser | `gitdiffs` re-renders when you resize the window |
   | Old and new line-number columns, `+` / `-` markers | Same |
   | Red / green line backgrounds, darker highlight on the exact words that changed | Same colours (Primer "dark default") |
   | `@@ -37,8 +37,13 @@ function` hunk bar | Same, grey on dark blue |
   | File path header | Bold path between thin rules |
   | Syntax colours | `GitHub Dark` theme (`bat/themes/GitHub Dark.tmTheme`) |
 
-  Long lines wrap without arrows. In the pager, `/` searches and `q` quits.
+  **Scrolling:** mouse wheel / trackpad, arrow keys, Space / `b` (page down /
+  up), `g` / `G` (top / bottom), `/` to search, `q` to quit. Short diffs print
+  straight to the terminal. Because the mouse scrolls the diff, hold **Option**
+  while dragging to select text. Long lines wrap without arrows.
   Settings: `git/delta.gitconfig` (included from `~/.gitconfig`). After
   editing the theme file, run `bat cache --build`.
 - Merge conflicts use `zdiff3`, so they also show the original text.
@@ -454,6 +463,8 @@ Vim. To use Neovim, add `export EDITOR=nvim` to `zsh/env.zsh`.
 | `install.sh` | New-Mac setup script (see [Quick start](#quick-start-new-mac)) |
 | `git/delta.gitconfig` | GitHub-style diff settings for delta |
 | `bat/themes/GitHub Dark.tmTheme` | GitHub dark syntax colours for bat and delta (linked as `~/.config/bat/themes`) |
+| `assets/og-image.png` | The banner at the top of this README (2560×1280). Also suitable as the repo's social preview: GitHub → Settings → General → Social preview |
+| `assets/og/og.html` | Source for the banner. Edit it, then re-render with the command in the file's header comment |
 | `starship.toml` | **Windows only** (starship prompt config). Not used on macOS |
 | `terminal-settings.json` | Windows Terminal settings |
 | `.bashrc` | Older bash config, not linked automatically |

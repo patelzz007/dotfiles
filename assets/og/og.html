@@ -1,0 +1,201 @@
+<!doctype html>
+<!--
+  Source for assets/og-image.png (the README banner / social preview).
+  Re-render after editing (from the repo root):
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
+      --hide-scrollbars --force-device-scale-factor=2 --window-size=1280,640 \
+      --screenshot="$PWD/assets/og-image.png" "file://$PWD/assets/og/og.html"
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>dotfiles</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --blue: #79c0ff;
+    --green: #3fb950;
+    --purple: #d2a8ff;
+    --orange: #ffa657;
+    --red: #ff7b72;
+    --yellow: #e3b341;
+    --mono: "Iosevka Nerd Font", "IosevkaNF", "SF Mono", ui-monospace, Menlo, monospace;
+    --sans: -apple-system, "SF Pro Display", "Helvetica Neue", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1280px; height: 640px; overflow: hidden; background: var(--bg); }
+  body {
+    font-family: var(--sans);
+    color: var(--text);
+    position: relative;
+    background:
+      radial-gradient(900px 520px at 88% -10%, rgba(56, 139, 253, 0.22), transparent 60%),
+      radial-gradient(700px 480px at -5% 110%, rgba(63, 185, 80, 0.16), transparent 60%),
+      radial-gradient(600px 400px at 45% 120%, rgba(163, 113, 247, 0.14), transparent 60%),
+      var(--bg);
+  }
+  /* faint dot grid */
+  body::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(240, 246, 252, 0.07) 1px, transparent 1px);
+    background-size: 22px 22px;
+    mask-image: linear-gradient(90deg, black 0%, rgba(0,0,0,0.35) 55%, transparent 100%);
+  }
+  .wrap {
+    position: relative;
+    display: grid;
+    grid-template-columns: 540px 1fr;
+    gap: 48px;
+    height: 100%;
+    padding: 60px 56px 56px 64px;
+    align-items: center;
+  }
+
+  /* ---- left column ---- */
+  .repo {
+    font-family: var(--mono);
+    font-size: 19px;
+    color: var(--muted);
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 18px;
+  }
+  .repo .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
+  .repo b { color: var(--text); font-weight: 600; }
+  h1 {
+    font-size: 104px;
+    line-height: 0.95;
+    font-weight: 800;
+    letter-spacing: -4px;
+    background: linear-gradient(100deg, #f0f6fc 0%, #a5d6ff 45%, #d2a8ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 22px;
+  }
+  .tagline {
+    font-size: 25px;
+    line-height: 1.38;
+    color: #c9d1d9;
+    max-width: 500px;
+    margin-bottom: 30px;
+  }
+  .tagline em { font-style: normal; color: var(--text); font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 9px; max-width: 520px; margin-bottom: 34px; }
+  .chip {
+    font-family: var(--mono);
+    font-size: 16.5px;
+    padding: 6px 13px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(22, 27, 34, 0.85);
+    color: var(--text);
+  }
+  .chip i {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--c); box-shadow: 0 0 8px var(--c);
+    margin-right: 9px; vertical-align: 2px;
+  }
+  .nw { white-space: nowrap; }
+  .banner { display: block; line-height: 1.12; margin: 6px 0 2px; }
+  .stats { display: flex; gap: 34px; }
+  .stat .n { font-size: 34px; font-weight: 700; letter-spacing: -1px; }
+  .stat .l { font-size: 15px; color: var(--muted); margin-top: 2px; }
+  .n.g { color: var(--green); } .n.b { color: var(--blue); } .n.p { color: var(--purple); }
+
+  /* ---- terminal ---- */
+  .term {
+    background: rgba(13, 17, 23, 0.92);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.03) inset,
+      0 30px 80px rgba(0, 0, 0, 0.55),
+      0 0 120px rgba(56, 139, 253, 0.12);
+    overflow: hidden;
+  }
+  .bar {
+    height: 40px;
+    display: flex; align-items: center; gap: 8px;
+    padding: 0 16px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .bar span { width: 12px; height: 12px; border-radius: 50%; }
+  .bar .r { background: #ff5f57; } .bar .y { background: #febc2e; } .bar .g2 { background: #28c840; }
+  .bar .title {
+    position: absolute; left: 0; right: 0; text-align: center;
+    font-family: var(--mono); font-size: 14px; color: var(--muted);
+    width: auto; height: auto; border-radius: 0; background: none;
+  }
+  pre {
+    font-family: var(--mono);
+    font-size: 15.5px;
+    line-height: 1.5;
+    padding: 18px 20px 20px;
+    color: var(--text);
+    white-space: pre;
+  }
+  .c-hash { color: #58a6ff; font-weight: 700; }
+  .c-user { color: #79c0ff; }
+  .c-host { color: #3fb950; }
+  .c-dir  { color: #e3b341; font-weight: 700; }
+  .c-git  { color: #58a6ff; }
+  .c-br   { color: #79c0ff; }
+  .c-x    { color: #ff7b72; }
+  .c-dim  { color: var(--muted); }
+  .c-dollar { color: #ff7b72; font-weight: 700; }
+  .c-ok   { color: #3fb950; font-weight: 700; }
+  .c-plus { color: #3fb950; } .c-minus { color: #f85149; }
+  .cursor { display: inline-block; width: 9px; height: 18px; background: #e6edf3; vertical-align: -3px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <section>
+      <div class="repo"><span class="dot"></span>patelzz007 / <b>dotfiles</b></div>
+      <h1>dotfiles</h1>
+      <p class="tagline">A fast, modern <em>macOS terminal</em>: zsh&nbsp;+&nbsp;Oh&nbsp;My&nbsp;Zsh, fuzzy&nbsp;everything, <span class="nw">GitHub&#8209;style diffs.</span></p>
+      <div class="chips">
+        <span class="chip"><i style="--c:#3fb950"></i>fnm</span>
+        <span class="chip"><i style="--c:#79c0ff"></i>zoxide</span>
+        <span class="chip"><i style="--c:#d2a8ff"></i>fzf · fzf-tab</span>
+        <span class="chip"><i style="--c:#e3b341"></i>eza</span>
+        <span class="chip"><i style="--c:#ff7b72"></i>bat</span>
+        <span class="chip"><i style="--c:#3fb950"></i>delta</span>
+        <span class="chip"><i style="--c:#79c0ff"></i>ripgrep · fd</span>
+        <span class="chip"><i style="--c:#ffa657"></i>lazygit</span>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="n g">0.13s</div><div class="l">shell startup</div></div>
+        <div class="stat"><div class="n b">15</div><div class="l">topic files</div></div>
+        <div class="stat"><div class="n p">1</div><div class="l">command setup</div></div>
+      </div>
+    </section>
+
+    <section class="term">
+      <div class="bar"><span class="r"></span><span class="y"></span><span class="g2"></span><span class="title">zsh — ~/dotfiles</span></div>
+<pre><span class="c-hash">#</span> <span class="c-user">patel</span> @ <span class="c-host">MacBook-Pro</span> in <span class="c-dir">~/dotfiles</span> on <span class="c-git">git:</span><span class="c-br">main</span> <span class="c-x">x</span> <span class="c-dim">[7:20:04]</span>
+<span class="c-dollar">$</span> z rewardhub
+<span class="c-hash">#</span> <span class="c-user">patel</span> @ <span class="c-host">MacBook-Pro</span> in <span class="c-dir">~/…/rewardhub-monorepo</span> on <span class="c-git">git:</span><span class="c-br">main</span> <span class="c-dim">[7:20:09]</span>
+<span class="c-dollar">$</span> gitpush "feat: tiered rewards"
+On <span class="c-br">main</span> branch.
+<span class="c-dim">[main 3f2a91c] feat: tiered rewards</span>
+<span class="c-dim"> 2 files changed, </span><span class="c-plus">36 insertions(+)</span><span class="c-dim">, </span><span class="c-minus">12 deletions(-)</span>
+Pushing to <span class="c-br">origin/main</span>...
+<span class="c-ok banner">  ____   ___   ___     ___  _  __
+ |___ \ / _ \ / _ \   / _ \| |/ /
+   __) | | | | | | | | | | | ' /
+  / __/| |_| | |_| | | |_| | . \
+ |_____|\___/ \___/   \___/|_|\_\</span>
+<span class="c-hash">#</span> <span class="c-user">patel</span> @ <span class="c-host">MacBook-Pro</span> in <span class="c-dir">~/…/rewardhub-monorepo</span> on <span class="c-git">git:</span><span class="c-br">main</span> <span class="c-dim">[7:20:15]</span>
+<span class="c-dollar">$</span> <span class="cursor"></span></pre>
+    </section>
+  </div>
+</body>
+</html>

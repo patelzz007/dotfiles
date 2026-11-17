@@ -62,7 +62,6 @@ alias gitrmcached='git rm -r --cached'                  # Stop tracking a path b
 # ---- Logs --------------------------------------------------------------------
 alias gitcount='git shortlog -sne'
 alias gitlog='git log --oneline'
-alias gitdiffs="git -c delta.side-by-side=true -c delta.line-numbers-right-format='│{np:>4} ' diff"   # GitHub-style split diff
 alias gitlog-full="git log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'"
 alias gitlog-changes="git log --oneline --decorate --stat --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'"
 
@@ -176,6 +175,83 @@ gitpush () {
 
     print -- "Successfully pushed to ${CLR[blue_b]}${branch}${CLR[reset]} branch."
     _gitpush_banner 32 '200 OK'
+}
+
+
+# ==============================================================================
+# gitdiffs: GitHub-style split diff that scrolls and adapts to the window
+# ==============================================================================
+
+# Below this many columns gitdiffs switches to the unified view, like GitHub
+# does on narrow screens. Override with: export GITDIFFS_SPLIT_MIN_COLS=120
+: ${GITDIFFS_SPLIT_MIN_COLS:=140}
+
+##
+# Current terminal width, read from the terminal itself (always up to date,
+# even mid-resize, unlike $COLUMNS inside a running function).
+# @stdout  int  number of columns
+##
+_term_cols () {
+    local size
+    size=$(stty size </dev/tty 2>/dev/null) && print -r -- "${size#* }" || print -r -- "${COLUMNS:-120}"
+}
+
+##
+# Render a diff with delta at a given width: split view if it's wide enough,
+# unified otherwise.
+# @param   $1  int     width in columns
+# @param   $@  string  remaining args go to `git diff`
+# @stdout  the rendered diff (with colours)
+##
+_gitdiffs_render () {
+    emulate -L zsh
+    local -ri cols=$1
+    shift
+    local -a layout=()
+    if (( cols >= GITDIFFS_SPLIT_MIN_COLS )); then
+        layout=( --side-by-side --line-numbers-right-format='│{np:>4} ' )
+    fi
+    git -c core.pager=cat diff --color=always "$@" \
+        | delta --paging=never --width="$cols" $layout
+}
+
+##
+# GitHub-style diff viewer.
+#   - Split view (old left, new right) on wide windows, unified on narrow ones.
+#   - Scroll with the mouse wheel / trackpad, arrows, space, or j/k. q quits.
+#   - Resizing the window re-renders the diff to fit the new size.
+# Accepts anything `git diff` does: gitdiffs --cached, gitdiffs main, gitdiffs -- src/
+# @param   $@  string  git diff arguments
+# @return  0 normally, 1 outside a git repository
+##
+gitdiffs () {
+    emulate -L zsh
+    setopt local_options local_traps no_monitor
+    git rev-parse --git-dir &>/dev/null || { print -u2 -- 'gitdiffs: not a git repository'; return 1 }
+
+    local -r tmp=$(mktemp -t gitdiffs) || return 1
+    local -i pid=0 resized=0 cols
+    trap 'rm -f -- "$tmp"' EXIT
+    trap 'resized=1; (( pid )) && kill $pid 2>/dev/null' WINCH
+
+    while true; do
+        resized=0
+        cols=$(_term_cols)
+        _gitdiffs_render $cols "$@" >| "$tmp"
+        if [[ ! -s $tmp ]]; then
+            print -- 'No changes.'
+            return 0
+        fi
+        # Run the pager in the background of this same process group, so this
+        # function still hears the terminal's resize signal (WINCH) and can redraw.
+        less --RAW-CONTROL-CHARS --mouse --wheel-lines=3 --quit-if-one-screen -- "$tmp" </dev/tty &
+        pid=$!
+        wait $pid 2>/dev/null
+        while (( resized )) && kill -0 $pid 2>/dev/null; do wait $pid 2>/dev/null; done
+        pid=0
+        (( resized )) || break
+        sleep 0.15                                  # let a window drag settle
+    done
 }
 
 
