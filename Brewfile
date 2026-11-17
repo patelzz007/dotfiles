@@ -32,8 +32,6 @@ brew "neovim"
 brew "ripgrep"
 # CLI proxy to minimize LLM token consumption
 brew "rtk"
-# Cross-shell prompt for astronauts
-brew "starship"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # UNIX shell (command interpreter)

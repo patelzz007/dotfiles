@@ -15,9 +15,10 @@
 #   files.zsh       file/folder helpers (cleardir, delete_node, getsshkey...)
 #   misc.zsh        startserver, weather, dl-website, cap-*, fuck...
 #   dev.zsh         killport, ports, gco, nr
+#   search.zsh      ff / fw: Telescope-style fuzzy file + live text search
 #   git.zsh         git aliases, gitpush, gitreset, gitrinse...
 #   ramcheck.zsh    ramcheck
-#   prompt.zsh      starship prompt (config: dotfiles/starship.toml)
+# Prompt: Oh My Zsh's "ys" theme (set in omz.zsh).
 # ==============================================================================
 
 ZSH_CONFIG_DIR="$HOME/.config/zsh"
@@ -27,8 +28,18 @@ ZSH_CONFIG_DIR="$HOME/.config/zsh"
 # Oh My Zsh and the files below re-create every alias they need.
 unalias -m '*'
 
-# Order matters: env -> path -> oh-my-zsh -> everything else -> prompt last.
-for _zsh_file in env path omz history node tools colors aliases navigation files misc dev git ramcheck prompt; do
+# Starship was tried and removed: on a reload, drop any prompt hooks it left
+# behind in an already-open terminal so the "ys" theme takes over again.
+precmd_functions=( ${precmd_functions:#starship_*} )
+preexec_functions=( ${preexec_functions:#starship_*} )
+[[ $PROMPT == *starship* ]] && PROMPT=''
+[[ $RPROMPT == *starship* ]] && RPROMPT=''      # ys has no right prompt, so clear starship's
+[[ $PROMPT2 == *starship* ]] && PROMPT2='%_> '
+[[ ${widgets[zle-keymap-select]} == *starship* ]] && zle -D zle-keymap-select
+unset STARSHIP_SHELL STARSHIP_SESSION_KEY STARSHIP_START_TIME STARSHIP_CMD_STATUS STARSHIP_PIPE_STATUS STARSHIP_DURATION
+
+# Order matters: env -> path -> oh-my-zsh -> everything else.
+for _zsh_file in env path omz history node tools colors aliases navigation files misc dev search git ramcheck; do
     if [[ -r $ZSH_CONFIG_DIR/$_zsh_file.zsh ]]; then
         source "$ZSH_CONFIG_DIR/$_zsh_file.zsh"
     else

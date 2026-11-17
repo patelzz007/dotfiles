@@ -4,10 +4,10 @@
 #
 #   1. Homebrew packages, apps and VS Code extensions (Brewfile)
 #   2. Oh My Zsh + plugins (autosuggestions, syntax-highlighting, fzf-tab)
-#   3. Symlinks: ~/.zshrc, ~/.config/zsh, ~/.config/starship.toml
+#   3. Symlinks: ~/.zshrc, ~/.config/zsh
 #      (anything already there is renamed to *.backup-<timestamp>, never deleted)
 #   4. git: include the delta settings from git/delta.gitconfig
-#   5. Node via fnm + global npm packages
+#   5. Node: latest LTS via fnm, set as default, + global npm packages
 #
 # Usage:  ./install.sh
 # Needs:  Homebrew (https://brew.sh). A Nerd Font in your terminal for icons.
@@ -15,7 +15,6 @@
 set -euo pipefail
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-NODE_DEFAULT="24.22.1"
 NPM_GLOBALS=(
     @angular/cli @nestjs/cli corepack figlet freebuff
     npm-check-updates pnpm typescript vercel yarn
@@ -63,9 +62,9 @@ link() {
     ln -s "$src" "$dst"
     info "Linked $dst -> $src"
 }
-link "$DOTFILES/.zshrc"         "$HOME/.zshrc"
-link "$DOTFILES/zsh"            "$HOME/.config/zsh"
-link "$DOTFILES/starship.toml"  "$HOME/.config/starship.toml"
+link "$DOTFILES/.zshrc"  "$HOME/.zshrc"
+link "$DOTFILES/zsh"     "$HOME/.config/zsh"
+# (starship.toml is for Windows only and is deliberately not linked on macOS.)
 
 # ---- 4. git + delta ------------------------------------------------------------
 DELTA_CONFIG="$DOTFILES/git/delta.gitconfig"
@@ -74,15 +73,16 @@ if ! git config --global --get-all include.path 2>/dev/null | grep -qxF "$DELTA_
     info "Added delta settings to ~/.gitconfig"
 fi
 
-# ---- 5. Node via fnm -----------------------------------------------------------
+# ---- 5. Node: latest LTS via fnm -------------------------------------------------
+# Later on, run `node-lts` in the shell to move to a newer LTS (it also carries
+# your global packages across).
 eval "$(fnm env --shell bash)"
-if ! fnm list | grep -q "v$NODE_DEFAULT"; then
-    info "Installing Node $NODE_DEFAULT"
-    fnm install "$NODE_DEFAULT"
-fi
-fnm default "$NODE_DEFAULT"
-fnm use "$NODE_DEFAULT" >/dev/null
-info "Installing global npm packages"
+info "Installing the latest Node LTS"
+fnm install --lts
+NODE_LTS="$(fnm exec --using=lts-latest node -v)"
+fnm default "$NODE_LTS"
+fnm use "$NODE_LTS" >/dev/null
+info "Default Node: $NODE_LTS. Installing global npm packages"
 npm install -g --no-fund --no-audit --allow-scripts=pnpm,yarn,esbuild "${NPM_GLOBALS[@]}"
 
 info "Done. Open a new terminal to start using it."

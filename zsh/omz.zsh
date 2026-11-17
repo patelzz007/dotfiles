@@ -3,8 +3,8 @@
 # Options reference: https://github.com/ohmyzsh/ohmyzsh/wiki/Settings
 # ==============================================================================
 
-# No Oh My Zsh theme: the prompt is drawn by starship (see prompt.zsh).
-ZSH_THEME=""
+# Prompt theme. (starship.toml in this repo is for Windows only and isn't used here.)
+ZSH_THEME="ys"
 
 # Plugin order matters: fzf-tab must come before autosuggestions and
 # syntax-highlighting. (Directory jumping is zoxide's job now; see tools.zsh.)

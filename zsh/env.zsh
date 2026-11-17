@@ -16,6 +16,9 @@ export JAVA_HOME="$(/usr/libexec/java_home -v 17 2>/dev/null \
 export CLICOLOR=1
 export LSCOLORS=GxExBxBxFxegedabagacad
 
+# eza (ll, tree): two spaces between each file icon and its name, for readability.
+export EZA_ICON_SPACING=2
+
 # Man pages rendered with bat's syntax highlighting.
 if (( $+commands[bat] )); then
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
