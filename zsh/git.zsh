@@ -62,6 +62,7 @@ alias gitrmcached='git rm -r --cached'                  # Stop tracking a path b
 # ---- Logs --------------------------------------------------------------------
 alias gitcount='git shortlog -sne'
 alias gitlog='git log --oneline'
+alias gitdiffs='git -c delta.side-by-side=true diff'     # Side-by-side diff (delta)
 alias gitlog-full="git log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'"
 alias gitlog-changes="git log --oneline --decorate --stat --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'"
 

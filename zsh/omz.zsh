@@ -1,16 +1,18 @@
 # ==============================================================================
-# omz.zsh: Oh My Zsh theme, plugins and completion setup.
+# omz.zsh: Oh My Zsh plugins and completion setup.
 # Options reference: https://github.com/ohmyzsh/ohmyzsh/wiki/Settings
 # ==============================================================================
 
-ZSH_THEME="ys"
+# No Oh My Zsh theme: the prompt is drawn by starship (see prompt.zsh).
+ZSH_THEME=""
 
-# autojump is loaded by its plugin; no need to source it again by hand.
+# Plugin order matters: fzf-tab must come before autosuggestions and
+# syntax-highlighting. (Directory jumping is zoxide's job now; see tools.zsh.)
 plugins=(
     git
+    fzf-tab
     zsh-autosuggestions
     zsh-syntax-highlighting
-    autojump
 )
 
 # Extra completion directories must be on fpath BEFORE oh-my-zsh runs compinit,

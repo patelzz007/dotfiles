@@ -10,17 +10,23 @@ alias x='exit'
 alias shell-to-zsh='chsh -s "$(command -v zsh)"'
 alias shell-to-bash='chsh -s "$(command -v bash)"'
 
-# ---- Listing -----------------------------------------------------------------
+# ---- Listing (eza: git status per file, icons, folders first) ----------------
+# Plain `ls` is kept as-is so its familiar flags (ls -lt etc.) still work.
+# Sort orders match the old ls versions: largest / newest first.
 alias ls='ls --color=auto'
-alias ll='ls -alh'                                     # List files
-alias llr='ls -alhr'                                   # ...reversed
-alias lls='ls -alhS'                                   # by size
-alias llsr='ls -alhSr'                                 # by size, reversed
-alias lld='ls -alht'                                   # by date modified
-alias lldr='ls -alhtr'                                 # by date modified, reversed
-alias lldc='ls -alhtU'                                 # by date created
-alias lldcr='ls -alhtUr'                               # by date created, reversed
-alias tree="find . -print | sed -e 's;[^/]*/;|_;g;s;_|; |;g'"   # Simple tree (no tree binary installed)
+alias ll='eza -la --header --git --icons --group-directories-first'
+alias llr='eza -la --header --git --icons --group-directories-first --reverse'
+alias lls='eza -la --header --git --icons --sort=size --reverse'        # by size
+alias llsr='eza -la --header --git --icons --sort=size'                 # by size, reversed
+alias lld='eza -la --header --git --icons --sort=modified --reverse'    # by date modified
+alias lldr='eza -la --header --git --icons --sort=modified'             # by date modified, reversed
+alias lldc='eza -la --header --git --icons --sort=created --reverse'    # by date created
+alias lldcr='eza -la --header --git --icons --sort=created'             # by date created, reversed
+alias tree='eza --tree --icons --git-ignore --ignore-glob="node_modules|.git"'   # tree -L 2 for depth
+
+# ---- Viewing -----------------------------------------------------------------
+alias cat='bat --paging=never --style=plain'           # Syntax-highlighted cat (bat FILE for line numbers)
+alias lg='lazygit'                                     # Terminal UI for git
 
 # ---- Files -------------------------------------------------------------------
 alias perm="stat -f '%Lp'"                             # Permissions as a number, e.g. 644
@@ -30,7 +36,7 @@ alias t='trash'                                        # Move to Trash (macOS bu
 # ---- Edit config files -------------------------------------------------------
 alias edithosts='code /etc/hosts'
 alias editbash='code ~/.bashrc'
-alias editzsh='code ~/.zshrc ~/.config/zsh'
+alias editzsh='code "$DOTFILES"'                        # Whole dotfiles repo
 alias editsshconfig='code ~/.ssh/config'
 
 # ---- Homebrew ----------------------------------------------------------------

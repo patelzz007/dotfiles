@@ -9,7 +9,7 @@
 # @return  0 on success, non-zero if cd failed
 ##
 cs () { cd "$@" && ls }
-cl () { cd "$@" && ls -alh }
+cl () { cd "$@" && eza -la --header --git --icons --group-directories-first }
 
 ##
 # Go up N directories and list.

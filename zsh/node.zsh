@@ -1,53 +1,43 @@
 # ==============================================================================
-# node.zsh: Node.js via nvm, lazy-loaded.
+# node.zsh: Node.js via fnm (Fast Node Manager).
 #
-# Loading nvm.sh costs ~0.5s per new shell, so instead:
-#   1. the default Node version's bin dir is put straight onto PATH, so `node`,
-#      `npm`, `pnpm`, `ng` and other global tools work instantly;
-#   2. nvm itself is only loaded the first time you actually type `nvm`.
+#   - Switches Node automatically when you cd into a project that has a .nvmrc
+#     or .node-version file (also found in parent folders).
+#   - package.json `engines.node` is deliberately NOT used for switching: fnm
+#     would pick the newest installed version matching ranges like ">=20", i.e.
+#     Node 26, where your global tools (ng, pnpm, nest...) aren't installed.
+#     For those projects use `fnm use <version>`, or add a .nvmrc.
+#
+#   fnm list | fnm install 26 | fnm use 26 | fnm default 24.22.1
 # ==============================================================================
 
+if (( $+commands[fnm] )); then
+    eval "$(fnm env --use-on-cd --version-file-strategy=recursive --resolve-engines=false --shell zsh)"
+fi
+
 ##
-# Resolve nvm's "default" alias to an installed version's bin directory.
-# @stdout  absolute path, e.g. ~/.nvm/versions/node/v24.22.1/bin
-# @return  0 if found, 1 otherwise
+# Muscle-memory shim: translates common nvm commands to fnm.
+# @param   $@  string  nvm-style command: use | install | uninstall | current |
+#                      ls | ls-remote | alias default <version>
+# @return  fnm's status, or 1 for commands without an fnm equivalent
 ##
-_nvm_default_bin () {
+nvm () {
     emulate -L zsh
-    local -r alias_file="$NVM_DIR/alias/default"
-    [[ -r $alias_file ]] || return 1
-
-    local -r wanted="${$(<$alias_file)#v}"
-    # Exact version first (24.22.1), else newest install matching a prefix (24 -> v24.x.y).
-    local -a candidates=( $NVM_DIR/versions/node/v${wanted}(N-/) )
-    (( $#candidates )) || candidates=( $NVM_DIR/versions/node/v${wanted}.*(N-/nOn) )
-    (( $#candidates )) || return 1
-
-    print -r -- "$candidates[1]/bin"
-}
-
-##
-# Load the real nvm (and its completions).
-# @return  status of sourcing nvm.sh
-##
-_nvm_load () {
-    [[ -s $NVM_DIR/nvm.sh ]] || return 1
-    source "$NVM_DIR/nvm.sh"
-    [[ -r $NVM_DIR/bash_completion ]] && source "$NVM_DIR/bash_completion"
-    return 0
-}
-
-() {
-    local bin
-    if bin=$(_nvm_default_bin); then
-        path=( $bin $path )
-        # Stand-in for `nvm`: replaces itself with the real one on first use.
-        nvm () {
-            unfunction nvm
-            _nvm_load && nvm "$@"
-        }
-    else
-        # Default alias is something like "lts/*" that we can't resolve cheaply: load normally.
-        _nvm_load
-    fi
+    local -r cmd=$1
+    (( $# )) && shift
+    case $cmd in
+        (ls|list)                         fnm list "$@" ;;
+        (ls-remote)                       fnm list-remote "$@" ;;
+        (use|install|uninstall|current)   fnm "$cmd" "$@" ;;
+        (alias)
+            if [[ $1 == default ]]; then
+                shift
+                fnm default "$@"
+            else
+                fnm alias "$@"
+            fi ;;
+        (*)
+            print -u2 -- "nvm has been replaced by fnm. Try: fnm ${cmd:-help} $*"
+            return 1 ;;
+    esac
 }

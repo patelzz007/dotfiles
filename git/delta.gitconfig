@@ -1,0 +1,19 @@
+# delta: syntax-highlighted git diffs with line numbers.
+# Included from ~/.gitconfig (install.sh adds the include).
+# Side-by-side view on demand:  gitdiffs   (or: git -c delta.side-by-side=true diff)
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true          # n / N jump between files in a long diff
+    line-numbers = true
+
+[merge]
+    conflictStyle = zdiff3   # conflicts also show the original text
+
+[diff]
+    colorMoved = default
