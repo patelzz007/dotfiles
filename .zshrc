@@ -40,3 +40,4 @@ date '+%I:%M:%S %p / %A / %B %-d, %Y'
 
 # Tool installers that append to this file will add their lines below.
 # Move them into path.zsh / tools.zsh when convenient.
+# Testing 123.
