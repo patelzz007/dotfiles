@@ -5,6 +5,7 @@ topic, plus the tools, plugins and settings it relies on. Everything in this
 README describes what's actually in the repo, so it doubles as a "what did I
 install and why" reference.
 
+- [Features at a glance](#features-at-a-glance)
 - [Quick start (new Mac)](#quick-start-new-mac)
 - [How it works](#how-it-works)
 - [Everything that's installed](#everything-thats-installed)
@@ -18,6 +19,21 @@ install and why" reference.
 - [Troubleshooting](#troubleshooting)
 - [Other files in this repo](#other-files-in-this-repo)
 - [History of changes](#history-of-changes)
+
+---
+
+## Features at a glance
+
+| Feature | How you use it |
+|---|---|
+| **fnm** (replaces nvm) | Node switches automatically in folders with a `.nvmrc` or `.node-version`. The default is always the latest LTS (`node-lts` to upgrade), with your globals (`ng`, `nest`, `pnpm`, `vercel`…) installed on it, and `nvm ls`/`use`/`install` still work. |
+| **zoxide** (replaces autojump) | `z rewardhub` jumps there, `zi` opens a picker. Your 62 autojump folders were imported, and `j` still works. |
+| **fzf-tab** | Tab completion becomes a fuzzy menu, with previews for `cd`, `git switch` and `kill`. |
+| **Prompt** | Oh My Zsh's `ys` theme. (starship was tried and removed; `starship.toml` in this repo is for Windows only.) |
+| **eza / bat / delta** | `ll` and `tree` show git status and icons, `cat` and man pages are syntax-highlighted, git diffs are highlighted (`gitdiffs` shows side-by-side). |
+| **Dev helpers** | `killport 3000`, `ports`, `gco` (branch picker), `nr` (pick and run a script with the right package manager). `mkcd` already came with Oh My Zsh. |
+| **History** | 100k entries shared across terminals, no duplicates, and commands typed with a leading space aren't saved. |
+| **Repo** | `Brewfile`, `install.sh` (sets up a new Mac, safe to re-run), `README.md`, `git/delta.gitconfig`. |
 
 ---
 
