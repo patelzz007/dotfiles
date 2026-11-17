@@ -28,10 +28,15 @@ ZSH_CONFIG_DIR="$HOME/.config/zsh"
 # Oh My Zsh and the files below re-create every alias they need.
 unalias -m '*'
 
-# Starship was tried and removed: on a reload, drop any prompt hooks it left
-# behind in an already-open terminal so the "ys" theme takes over again.
-precmd_functions=( ${precmd_functions:#starship_*} )
-preexec_functions=( ${preexec_functions:#starship_*} )
+# Tools that were removed (starship, autojump): on a reload, drop the hooks they
+# left behind in an already-open terminal. Otherwise autojump's cd hook keeps
+# calling the uninstalled `autojump` ("command not found" after every cd/z/j),
+# and starship keeps drawing its prompt instead of "ys".
+chpwd_functions=( ${chpwd_functions:#autojump_*} )
+precmd_functions=( ${precmd_functions:#(starship|autojump)_*} )
+preexec_functions=( ${preexec_functions:#(starship|autojump)_*} )
+(( $+functions[autojump_chpwd] )) && unfunction autojump_chpwd
+(( $+functions[j] )) && unfunction j                # autojump's `j`; tools.zsh maps j to zoxide
 [[ $PROMPT == *starship* ]] && PROMPT=''
 [[ $RPROMPT == *starship* ]] && RPROMPT=''      # ys has no right prompt, so clear starship's
 [[ $PROMPT2 == *starship* ]] && PROMPT2='%_> '
