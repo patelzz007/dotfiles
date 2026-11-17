@@ -201,40 +201,6 @@ gitpush () {
 
 
 # ==============================================================================
-# gitdiffs: review changes in Neovim (diffview.nvim + Telescope)
-# ==============================================================================
-
-##
-# Open a Neovim diff review: changed-files tree on the left (a divider between
-# folders), side-by-side diff on the right, Telescope fuzzy search.
-# Uses its own Neovim setup (dotfiles/nvim/gitdiffs, NVIM_APPNAME=gitdiffs), so
-# it never touches a regular Neovim config.
-#
-#   Space f   find a changed file        Tab / S-Tab  next / previous file
-#   Space /   search text in changes     ]c / [c      next / previous change
-#   Space s   search in this file        g?           every key
-#   q         quit                       mouse        click, scroll, resize
-#
-# @param   $@  string  what to compare (anything :DiffviewOpen takes):
-#                      nothing = uncommitted changes, --cached, main,
-#                      main...feature, HEAD~3, -- src/
-# @return  nvim's exit status; 1 outside a git repo or without Neovim
-##
-gitdiffs () {
-    emulate -L zsh
-    git rev-parse --git-dir &>/dev/null || { print -u2 -- 'gitdiffs: not a git repository'; return 1 }
-    (( $+commands[nvim] )) || { print -u2 -- 'gitdiffs: needs Neovim. Run: brew install neovim'; return 1 }
-
-    if (( ! $# )) && git diff --quiet HEAD -- 2>/dev/null \
-        && [[ -z $(git ls-files --others --exclude-standard) ]]; then
-        print -- 'No changes.'
-        return 0
-    fi
-    NVIM_APPNAME=gitdiffs nvim -c "DiffviewOpen ${(j: :)${(q)@}}"
-}
-
-
-# ==============================================================================
 # Other helpers
 # ==============================================================================
 

@@ -37,6 +37,7 @@ precmd_functions=( ${precmd_functions:#(starship|autojump)_*} )
 preexec_functions=( ${preexec_functions:#(starship|autojump)_*} )
 (( $+functions[autojump_chpwd] )) && unfunction autojump_chpwd
 (( $+functions[j] )) && unfunction j                # autojump's `j`; tools.zsh maps j to zoxide
+(( $+functions[gitdiffs] )) && unfunction gitdiffs  # removed (it needed Neovim)
 [[ $PROMPT == *starship* ]] && PROMPT=''
 [[ $RPROMPT == *starship* ]] && RPROMPT=''      # ys has no right prompt, so clear starship's
 [[ $PROMPT2 == *starship* ]] && PROMPT2='%_> '

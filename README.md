@@ -35,11 +35,10 @@ install and why" reference.
 | **fzf-tab** | Tab completion becomes a fuzzy menu, with previews for `cd`, `git switch` and `kill`. |
 | **Prompt** | Oh My Zsh's `ys` theme. (starship was tried and removed; `starship.toml` in this repo is for Windows only.) |
 | **eza / bat / delta** | `ll` and `tree` show git status and icons, `cat` and man pages are syntax-highlighted, `git diff` looks like GitHub's dark theme and scrolls with the mouse. |
-| **gitdiffs** (Neovim) | Neovim's diffview: changed-files tree with a divider between folders, side-by-side diff, Telescope fuzzy search (`Space f` files, `Space /` text). `gitdiffs main` compares against a branch. |
 | **gitpush** (`gp`) | Hook output (tests, lint) and push progress stream live; `200 OK` or a `FAILED` banner with the reason. |
 | **Dev helpers** | `killport 3000`, `ports`, `gco` (branch picker), `nr` (pick and run a script with the right package manager). `mkcd` already came with Oh My Zsh. |
 | **History** | 100k entries shared across terminals, no duplicates, and commands typed with a leading space aren't saved. |
-| **Repo** | `Brewfile`, `install.sh` (sets up a new Mac, safe to re-run), `README.md` with a banner image, `git/delta.gitconfig`, `bat/themes/GitHub Dark.tmTheme`, `nvim/gitdiffs/`. |
+| **Repo** | `Brewfile`, `install.sh` (sets up a new Mac, safe to re-run), `README.md` with a banner image, `git/delta.gitconfig`, `bat/themes/GitHub Dark.tmTheme`. |
 
 ---
 
@@ -162,27 +161,9 @@ installed (apps, databases, VS Code extensions) is in `Brewfile`.
 | [`eza`](https://github.com/eza-community/eza) | Modern `ls` with git status and icons | `ll`, `tree`, `cl`, previews |
 | [`bat`](https://github.com/sharkdp/bat) | `cat` with syntax highlighting | `cat`, man pages, previews |
 | [`git-delta`](https://github.com/dandavison/delta) | GitHub-style git diffs | `git diff`, `git show`, `git log -p` |
-| [`neovim`](https://neovim.io) | Editor; runs the `gitdiffs` review | `gitdiffs` |
-| [`tree-sitter-cli`](https://github.com/tree-sitter/tree-sitter) | Builds the syntax parsers Neovim highlights with | `gitdiffs` |
 | [`lazygit`](https://github.com/jesseduffield/lazygit) | Full git UI in the terminal | `lg` |
 | `figlet` (npm package) | Big ASCII banners | `gitpush` (`200 OK` / `FAILED`) |
 | `gh` | GitHub CLI | — |
-
-### Neovim plugins (for `gitdiffs` only)
-
-Installed automatically by [lazy.nvim](https://github.com/folke/lazy.nvim)
-into `~/.local/share/gitdiffs`, versions pinned in `nvim/gitdiffs/lazy-lock.json`.
-
-| Plugin | What it does |
-|---|---|
-| [diffview.nvim](https://github.com/sindrets/diffview.nvim) | The diff review itself: changed-files tree + side-by-side diff |
-| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder for `Space f`, `Space /`, `Space s` |
-| [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim) | Fast fzf matching inside Telescope (compiled with `make`) |
-| [github-nvim-theme](https://github.com/projekt0n/github-nvim-theme) | GitHub's dark colour scheme (`github_dark_default`) |
-| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Accurate syntax highlighting (TS, TSX, JSON, CSS, PHP, Python, SQL…) |
-| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Status bar with the key hints |
-| [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) | File-type icons |
-| [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) | Helper library Telescope needs |
 
 ### Global npm packages (on the default Node)
 
@@ -279,7 +260,6 @@ Details in [Fuzzy search](#fuzzy-search-telescope-style).
 | `gitdbr <branch>` | Delete a branch locally and on origin |
 | `gitupstream <remote/branch>` | Set the upstream of the current branch |
 | `lg` | lazygit |
-| `gitdiffs [what]` | Review changes in Neovim: file tree with folder dividers, side-by-side diff, Telescope fuzzy search. See [gitdiffs](#gitdiffs-review-changes-in-neovim) |
 
 **Aliases** (`main` or `master` is detected automatically where it says "main")
 
@@ -373,8 +353,8 @@ results on the left and a syntax-highlighted preview on the right.
 | Esc | Cancel |
 
 **Which editor opens?** `$VISUAL`, then `$EDITOR`, otherwise VS Code. Jumping
-to a line works with VS Code, Cursor, Windsurf, Zed, Sublime Text, Neovim and
-Vim. To use Neovim, add `export EDITOR=nvim` to `zsh/env.zsh`.
+to a line works with VS Code, Cursor, Windsurf, Zed, Sublime Text and Vim.
+To change it, add e.g. `export EDITOR=cursor` to `zsh/env.zsh`.
 
 ---
 
@@ -406,65 +386,10 @@ Vim. To use Neovim, add `export EDITOR=nvim` to `zsh/env.zsh`.
 
 ## Git
 
-### `gitdiffs`: review changes in Neovim
-
-`gitdiffs` opens the same diff review Neovim users use:
-[diffview.nvim](https://github.com/sindrets/diffview.nvim) with
-[Telescope](https://github.com/nvim-telescope/telescope.nvim) fuzzy search,
-GitHub's official dark theme and Treesitter syntax highlighting.
-
-```
-┌─ Changes (4) ─────────┬─ old ─────────────────────┬─ new ─────────────────────┐
-│ M  api/src/users      │  1 export const a = 1;    │  1 export const a = 1;    │
-│ M     service.ts      │  3   return `hi ${name}`; │  3   return `hello ${…}`; │
-│ ───────────────────── │                           │                           │
-│ M  web                │  (changed words are       │                           │
-│ M    app              │   highlighted, removed    │                           │
-│ M       page.tsx      │   lines shown as ╱╱╱)     │                           │
-│ ───────────────────── │                           │                           │
-│ M    components       │                           │                           │
-└───────────────────────┴───────────────────────────┴───────────────────────────┘
- ␣f files  ␣/ search  ␣s in file  ⇥ next  g? keys  q quit
-```
-
-- **Left:** every changed file as a tree, with a horizontal divider between folders.
-- **Right:** the old and new version side by side (stacked on narrow windows),
-  with the changed words highlighted.
-- Fully mouse-driven too: click a file, scroll, drag the split.
-
-| Key | Does |
-|---|---|
-| `Space f` (or `Ctrl-p`) | **Fuzzy-find a changed file** (Telescope, with preview) |
-| `Space /` | **Search text across all changed files** as you type; Enter jumps the diff to that line |
-| `Space s` | Fuzzy-search lines in the current file |
-| `Tab` / `Shift-Tab` | Next / previous file |
-| `]c` / `[c` | Next / previous change in the file |
-| `Space e` | Show / hide the file tree |
-| `g?` | Every diffview key |
-| `q` | Quit |
-
-What it can compare (anything `:DiffviewOpen` takes):
-
-| Command | Shows |
-|---|---|
-| `gitdiffs` | Your uncommitted changes (staged + unstaged + new files) |
-| `gitdiffs --cached` | Only what's staged |
-| `gitdiffs main` | Everything that differs from `main` |
-| `gitdiffs main...feature` | What `feature` changed since it branched off `main` (like a PR) |
-| `gitdiffs HEAD~3` | The last 3 commits plus uncommitted changes |
-| `gitdiffs -- src/` | Limit to a folder |
-
-How it's set up: the config is `nvim/gitdiffs/init.lua` (linked as
-`~/.config/gitdiffs`) and runs as its own Neovim profile
-(`NVIM_APPNAME=gitdiffs`), so it never touches a regular Neovim config.
-Plugin versions are pinned in `nvim/gitdiffs/lazy-lock.json`; plugins live in
-`~/.local/share/gitdiffs`. Update them with
-`NVIM_APPNAME=gitdiffs nvim --headless "+Lazy! sync" +qa`.
-
 ### `git diff`: GitHub-style output in the terminal
 
-For a quick look without opening an editor, delta renders `git diff`,
-`git show` and `git log -p` with GitHub's colours and layout:
+delta renders `git diff`, `git show` and `git log -p` with GitHub's colours
+and layout. For lazygit's full git UI, run `lg`.
 
   | GitHub | Here |
   |---|---|
@@ -537,8 +462,6 @@ For a quick look without opening an editor, delta renders `git diff`,
 | `install.sh` | New-Mac setup script (see [Quick start](#quick-start-new-mac)) |
 | `git/delta.gitconfig` | GitHub-style diff settings for delta |
 | `bat/themes/GitHub Dark.tmTheme` | GitHub dark syntax colours for bat and delta (linked as `~/.config/bat/themes`) |
-| `nvim/gitdiffs/init.lua` | The Neovim setup behind `gitdiffs` (linked as `~/.config/gitdiffs`) |
-| `nvim/gitdiffs/lazy-lock.json` | Pinned versions of the `gitdiffs` Neovim plugins |
 | `assets/og-image.png` | The banner at the top of this README (2560×1280). Also suitable as the repo's social preview: GitHub → Settings → General → Social preview |
 | `assets/og/og.html` | Source for the banner. Edit it, then re-render with the command in the file's header comment |
 | `starship.toml` | **Windows only** (starship prompt config). Not used on macOS |

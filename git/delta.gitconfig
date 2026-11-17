@@ -3,7 +3,7 @@
 # Included from ~/.gitconfig (install.sh adds the include).
 #
 #   git diff / git show / git log -p   unified view (GitHub's default)
-#   gitdiffs                           split view   (GitHub's "Split" option)
+#   git -c delta.side-by-side=true diff  split view (GitHub's "Split" option)
 #
 # Colours are GitHub's Primer "dark default" diff colours, blended onto
 # GitHub's background (#0d1117). Syntax colours: bat/themes/GitHub Dark.tmTheme.
@@ -69,9 +69,6 @@
     wrap-right-prefix-symbol = " "
     wrap-right-percent       = 0.1
     wrap-max-lines           = unlimited
-
-# Split view: `gitdiffs` (zsh/git.zsh) turns on side-by-side and adds a thin
-# divider between the old and new halves.
 
 [color "diff"]
     frag = "#8b949e" "#121d2f"       # hunk header (@@ ... @@)

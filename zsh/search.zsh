@@ -13,7 +13,7 @@
 #   Esc           cancel                                  current results
 #
 # Editor: $VISUAL, then $EDITOR, else VS Code. Line jumps work for VS Code,
-# Cursor, Zed, Sublime, Neovim and Vim. e.g. `export EDITOR=nvim` in env.zsh.
+# Cursor, Zed, Sublime and Vim. e.g. `export EDITOR=cursor` in env.zsh.
 # ==============================================================================
 
 # Shared Telescope-like look: big window, prompt on top, preview on the right.
