@@ -28,6 +28,8 @@ brew "gh"
 brew "lazygit"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Parser generator; builds the syntax parsers gitdiffs (Neovim) highlights with
+brew "tree-sitter-cli"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # CLI proxy to minimize LLM token consumption

@@ -87,7 +87,27 @@ _gitpush_banner () {
 }
 
 ##
-# Show the FAILED banner, then the reason and git's own output underneath.
+# Run a command with its output shown LIVE (hook output, test runs, colours,
+# progress bars), while also saving a copy so a failure can be explained after.
+# `script` gives the command a real terminal, so nothing is buffered or hidden.
+# @param   $1  string  log file to write the copy to
+# @param   $@  string  the command and its arguments
+# @return  the command's exit status
+##
+_run_live () {
+    local -r log=$1
+    shift
+    if [[ -t 0 && -t 1 ]]; then
+        script -q "$log" "$@"
+    else
+        "$@" 2>&1 | tee "$log"
+        return ${pipestatus[1]}
+    fi
+}
+
+##
+# Show the FAILED banner, then the reason (and git's output, if it wasn't
+# already shown live).
 # @param   $1  string  human-readable reason
 # @param   $2  string  captured git output (optional)
 # @stderr  reason + git output
@@ -112,8 +132,11 @@ _gitpush_fail () {
 ##
 gitpush () {
     emulate -L zsh
+    setopt local_traps
     local -r msg="$*"
     local branch out reason
+    local -r log=$(mktemp -t gitpush) || return 1
+    trap 'rm -f -- "$log"' EXIT
 
     # ---- Pre-flight checks -------------------------------------------------
     if [[ -z ${msg//[[:space:]]/} ]]; then
@@ -142,20 +165,18 @@ gitpush () {
         return 1
     fi
 
-    # ---- Commit (skipped if there's nothing new) ---------------------------
+    # ---- Commit (skipped if there's nothing new); output shown live --------
     if git diff --cached --quiet; then
         print -- 'Nothing new to commit; pushing existing commits.'
-    else
-        if ! out=$(git commit -m "$msg" 2>&1); then
-            _gitpush_fail 'git commit failed (a pre-commit hook may have rejected it). Your changes are still staged.' "$out"
-            return 1
-        fi
-        print -r -- "$out"
+    elif ! _run_live "$log" git commit -m "$msg"; then
+        _gitpush_fail 'git commit failed (a pre-commit hook may have rejected it; see its output above). Your changes are still staged.'
+        return 1
     fi
 
-    # ---- Push --------------------------------------------------------------
+    # ---- Push; output (pre-push hooks, progress) shown live ----------------
     print -- "Pushing to ${CLR[blue_b]}origin/${branch}${CLR[reset]}..."
-    if ! out=$(git push -u origin "$branch" 2>&1); then
+    if ! _run_live "$log" git push --progress -u origin "$branch"; then
+        out=$(<"$log")
         reason="git push to origin/$branch failed."
         case $out in
             (*hook\ declined*|*pre-push*)
@@ -166,12 +187,13 @@ gitpush () {
                 reason+=" Authentication failed. Check your SSH key or credentials." ;;
             (*Could\ not\ resolve\ host*|*timed\ out*|*Connection\ refused*|*unable\ to\ access*)
                 reason+=" Could not reach the remote. Check your network connection." ;;
+            (*failed\ to\ push*)
+                reason+=" Something stopped the push, usually a pre-push hook (tests, lint or type checks) failing." ;;
         esac
-        reason+=" Your commit is saved locally."
-        _gitpush_fail "$reason" "$out"
+        reason+=" Your commit is saved locally. (Full output is above.)"
+        _gitpush_fail "$reason"
         return 1
     fi
-    print -r -- "$out"
 
     print -- "Successfully pushed to ${CLR[blue_b]}${branch}${CLR[reset]} branch."
     _gitpush_banner 32 '200 OK'
@@ -179,79 +201,36 @@ gitpush () {
 
 
 # ==============================================================================
-# gitdiffs: GitHub-style split diff that scrolls and adapts to the window
+# gitdiffs: review changes in Neovim (diffview.nvim + Telescope)
 # ==============================================================================
 
-# Below this many columns gitdiffs switches to the unified view, like GitHub
-# does on narrow screens. Override with: export GITDIFFS_SPLIT_MIN_COLS=120
-: ${GITDIFFS_SPLIT_MIN_COLS:=140}
-
 ##
-# Current terminal width, read from the terminal itself (always up to date,
-# even mid-resize, unlike $COLUMNS inside a running function).
-# @stdout  int  number of columns
-##
-_term_cols () {
-    local size
-    size=$(stty size </dev/tty 2>/dev/null) && print -r -- "${size#* }" || print -r -- "${COLUMNS:-120}"
-}
-
-##
-# Render a diff with delta at a given width: split view if it's wide enough,
-# unified otherwise.
-# @param   $1  int     width in columns
-# @param   $@  string  remaining args go to `git diff`
-# @stdout  the rendered diff (with colours)
-##
-_gitdiffs_render () {
-    emulate -L zsh
-    local -ri cols=$1
-    shift
-    local -a layout=()
-    if (( cols >= GITDIFFS_SPLIT_MIN_COLS )); then
-        layout=( --side-by-side --line-numbers-right-format='│{np:>4} ' )
-    fi
-    git -c core.pager=cat diff --color=always "$@" \
-        | delta --paging=never --width="$cols" $layout
-}
-
-##
-# GitHub-style diff viewer.
-#   - Split view (old left, new right) on wide windows, unified on narrow ones.
-#   - Scroll with the mouse wheel / trackpad, arrows, space, or j/k. q quits.
-#   - Resizing the window re-renders the diff to fit the new size.
-# Accepts anything `git diff` does: gitdiffs --cached, gitdiffs main, gitdiffs -- src/
-# @param   $@  string  git diff arguments
-# @return  0 normally, 1 outside a git repository
+# Open a Neovim diff review: changed-files tree on the left (a divider between
+# folders), side-by-side diff on the right, Telescope fuzzy search.
+# Uses its own Neovim setup (dotfiles/nvim/gitdiffs, NVIM_APPNAME=gitdiffs), so
+# it never touches a regular Neovim config.
+#
+#   Space f   find a changed file        Tab / S-Tab  next / previous file
+#   Space /   search text in changes     ]c / [c      next / previous change
+#   Space s   search in this file        g?           every key
+#   q         quit                       mouse        click, scroll, resize
+#
+# @param   $@  string  what to compare (anything :DiffviewOpen takes):
+#                      nothing = uncommitted changes, --cached, main,
+#                      main...feature, HEAD~3, -- src/
+# @return  nvim's exit status; 1 outside a git repo or without Neovim
 ##
 gitdiffs () {
     emulate -L zsh
-    setopt local_options local_traps no_monitor
     git rev-parse --git-dir &>/dev/null || { print -u2 -- 'gitdiffs: not a git repository'; return 1 }
+    (( $+commands[nvim] )) || { print -u2 -- 'gitdiffs: needs Neovim. Run: brew install neovim'; return 1 }
 
-    local -r tmp=$(mktemp -t gitdiffs) || return 1
-    local -i pid=0 resized=0 cols
-    trap 'rm -f -- "$tmp"' EXIT
-    trap 'resized=1; (( pid )) && kill $pid 2>/dev/null' WINCH
-
-    while true; do
-        resized=0
-        cols=$(_term_cols)
-        _gitdiffs_render $cols "$@" >| "$tmp"
-        if [[ ! -s $tmp ]]; then
-            print -- 'No changes.'
-            return 0
-        fi
-        # Run the pager in the background of this same process group, so this
-        # function still hears the terminal's resize signal (WINCH) and can redraw.
-        less --RAW-CONTROL-CHARS --mouse --wheel-lines=3 --quit-if-one-screen -- "$tmp" </dev/tty &
-        pid=$!
-        wait $pid 2>/dev/null
-        while (( resized )) && kill -0 $pid 2>/dev/null; do wait $pid 2>/dev/null; done
-        pid=0
-        (( resized )) || break
-        sleep 0.15                                  # let a window drag settle
-    done
+    if (( ! $# )) && git diff --quiet HEAD -- 2>/dev/null \
+        && [[ -z $(git ls-files --others --exclude-standard) ]]; then
+        print -- 'No changes.'
+        return 0
+    fi
+    NVIM_APPNAME=gitdiffs nvim -c "DiffviewOpen ${(j: :)${(q)@}}"
 }
 
 

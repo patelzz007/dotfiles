@@ -65,10 +65,17 @@ link() {
 link "$DOTFILES/.zshrc"  "$HOME/.zshrc"
 link "$DOTFILES/zsh"     "$HOME/.config/zsh"
 link "$DOTFILES/bat/themes" "$HOME/.config/bat/themes"
+link "$DOTFILES/nvim/gitdiffs" "$HOME/.config/gitdiffs"
 # (starship.toml is for Windows only and is deliberately not linked on macOS.)
 
 info "Building bat's theme cache (GitHub Dark theme for bat and delta)"
 bat cache --build >/dev/null
+
+info "Installing the Neovim plugins and syntax parsers used by gitdiffs"
+NVIM_APPNAME=gitdiffs nvim --headless "+Lazy! restore" +qa
+NVIM_APPNAME=gitdiffs nvim --headless \
+    -c 'lua require("nvim-treesitter").install(GITDIFFS_PARSERS):wait(600000)' \
+    -c 'qa'
 
 # ---- 4. git + delta ------------------------------------------------------------
 DELTA_CONFIG="$DOTFILES/git/delta.gitconfig"
