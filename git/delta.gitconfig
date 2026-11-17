@@ -1,6 +1,13 @@
-# delta: syntax-highlighted git diffs with line numbers.
+# ==============================================================================
+# delta: git diffs styled like github.com's dark theme.
 # Included from ~/.gitconfig (install.sh adds the include).
-# Side-by-side view on demand:  gitdiffs   (or: git -c delta.side-by-side=true diff)
+#
+#   git diff / git show / git log -p   unified view (GitHub's default)
+#   gitdiffs                           split view   (GitHub's "Split" option)
+#
+# Colours are GitHub's Primer "dark default" diff colours, blended onto
+# GitHub's background (#0d1117). Syntax colours: bat/themes/GitHub Dark.tmTheme.
+# ==============================================================================
 
 [core]
     pager = delta
@@ -9,11 +16,62 @@
     diffFilter = delta --color-only
 
 [delta]
-    navigate = true          # n / N jump between files in a long diff
+    dark = true
+    syntax-theme = GitHub Dark
+
+    # ---- Removed / added lines --------------------------------------------
+    minus-style          = syntax "#25171c"     # removed line
+    minus-non-emph-style = syntax "#25171c"
+    minus-emph-style     = syntax "#6b2b2b"     # the exact words that changed
+    minus-empty-line-marker-style = normal "#25171c"
+    plus-style           = syntax "#12261e"     # added line
+    plus-non-emph-style  = syntax "#12261e"
+    plus-emph-style      = syntax "#1a4a29"
+    plus-empty-line-marker-style  = normal "#12261e"
+    zero-style           = syntax               # unchanged context lines
+    keep-plus-minus-markers = true              # show + / - like GitHub
+    whitespace-error-style  = "#f85149" reverse
+
+    # ---- Line numbers: old and new columns, no separators -----------------
     line-numbers = true
+    line-numbers-left-format  = "{nm:>4} "
+    line-numbers-right-format = "{np:>4} "
+    line-numbers-minus-style  = "#8b949e" "#301b1e"
+    line-numbers-plus-style   = "#8b949e" "#1c4328"
+    line-numbers-zero-style   = "#6e7681"
+    line-numbers-left-style   = "#30363d"
+    line-numbers-right-style  = "#30363d"
+
+    # ---- File header: the path in bold between thin rules ------------------
+    file-style            = bold "#e6edf3"
+    file-decoration-style = "#30363d" ol ul
+    file-added-label      = "[added]"
+    file-removed-label    = "[deleted]"
+    file-renamed-label    = "[renamed]"
+    file-copied-label     = "[copied]"
+
+    # ---- Hunk header: GitHub's "@@ -37,8 +37,13 @@ context" bar ------------
+    # `raw` prints git's own line; its colours come from [color "diff"] below.
+    hunk-header-style            = raw
+    hunk-header-decoration-style = none
+
+    # ---- Commit headers (git log -p, git show) -----------------------------
+    commit-style            = raw
+    commit-decoration-style = none
+
+    # ---- Long lines wrap quietly (no arrows), like GitHub ------------------
+    wrap-left-symbol         = " "
+    wrap-right-symbol        = " "
+    wrap-right-prefix-symbol = " "
+    wrap-right-percent       = 0.1
+    wrap-max-lines           = unlimited
+
+# Split view: `gitdiffs` (zsh/git.zsh) turns on side-by-side and adds a thin
+# divider between the old and new halves.
+
+[color "diff"]
+    frag = "#8b949e" "#121d2f"       # hunk header (@@ ... @@)
+    func = "#8b949e" "#121d2f"       # the function name after it
 
 [merge]
-    conflictStyle = zdiff3   # conflicts also show the original text
-
-[diff]
-    colorMoved = default
+    conflictStyle = zdiff3           # conflicts also show the original text

@@ -30,7 +30,7 @@ install and why" reference.
 | **zoxide** (replaces autojump) | `z rewardhub` jumps there, `zi` opens a picker. Your 62 autojump folders were imported, and `j` still works. |
 | **fzf-tab** | Tab completion becomes a fuzzy menu, with previews for `cd`, `git switch` and `kill`. |
 | **Prompt** | Oh My Zsh's `ys` theme. (starship was tried and removed; `starship.toml` in this repo is for Windows only.) |
-| **eza / bat / delta** | `ll` and `tree` show git status and icons, `cat` and man pages are syntax-highlighted, git diffs are highlighted (`gitdiffs` shows side-by-side). |
+| **eza / bat / delta** | `ll` and `tree` show git status and icons, `cat` and man pages are syntax-highlighted, git diffs look like GitHub's dark theme (`git diff` = unified view, `gitdiffs` = split view). |
 | **Dev helpers** | `killport 3000`, `ports`, `gco` (branch picker), `nr` (pick and run a script with the right package manager). `mkcd` already came with Oh My Zsh. |
 | **History** | 100k entries shared across terminals, no duplicates, and commands typed with a leading space aren't saved. |
 | **Repo** | `Brewfile`, `install.sh` (sets up a new Mac, safe to re-run), `README.md`, `git/delta.gitconfig`. |
@@ -155,7 +155,7 @@ installed (apps, databases, VS Code extensions) is in `Brewfile`.
 | [`ripgrep`](https://github.com/BurntSushi/ripgrep) (`rg`) | Fast `grep` that respects `.gitignore` | `fw` |
 | [`eza`](https://github.com/eza-community/eza) | Modern `ls` with git status and icons | `ll`, `tree`, `cl`, previews |
 | [`bat`](https://github.com/sharkdp/bat) | `cat` with syntax highlighting | `cat`, man pages, previews |
-| [`git-delta`](https://github.com/dandavison/delta) | Syntax-highlighted git diffs | `git diff`, `git log -p`, `gitdiffs` |
+| [`git-delta`](https://github.com/dandavison/delta) | GitHub-style git diffs | `git diff`, `git show`, `git log -p`, `gitdiffs` |
 | [`lazygit`](https://github.com/jesseduffield/lazygit) | Full git UI in the terminal | `lg` |
 | `figlet` (npm package) | Big ASCII banners | `gitpush` (`200 OK` / `FAILED`) |
 | `gh` | GitHub CLI | — |
@@ -255,7 +255,7 @@ Details in [Fuzzy search](#fuzzy-search-telescope-style).
 | `gitdbr <branch>` | Delete a branch locally and on origin |
 | `gitupstream <remote/branch>` | Set the upstream of the current branch |
 | `lg` | lazygit |
-| `gitdiffs` | `git diff`, side by side |
+| `gitdiffs` | `git diff` in GitHub's split view (old left, new right). Takes the same options, e.g. `gitdiffs --cached` |
 
 **Aliases** (`main` or `master` is detected automatically where it says "main")
 
@@ -382,10 +382,22 @@ Vim. To use Neovim, add `export EDITOR=nvim` to `zsh/env.zsh`.
 
 ## Git
 
-- **delta** makes `git diff`, `git show` and `git log -p` syntax-highlighted
-  with line numbers. In a long diff, `n` / `N` jump between files.
-  `gitdiffs` shows a side-by-side diff. Settings: `git/delta.gitconfig`,
-  included from `~/.gitconfig`.
+- **Diffs look like github.com (dark theme).** delta renders every diff with
+  GitHub's colours and layout:
+
+  | GitHub | Here |
+  |---|---|
+  | Unified view (default) | `git diff`, `git show`, `git log -p` |
+  | Split view | `gitdiffs` (old on the left, new on the right) |
+  | Old and new line-number columns, `+` / `-` markers | Same |
+  | Red / green line backgrounds, darker highlight on the exact words that changed | Same colours (Primer "dark default") |
+  | `@@ -37,8 +37,13 @@ function` hunk bar | Same, grey on dark blue |
+  | File path header | Bold path between thin rules |
+  | Syntax colours | `GitHub Dark` theme (`bat/themes/GitHub Dark.tmTheme`) |
+
+  Long lines wrap without arrows. In the pager, `/` searches and `q` quits.
+  Settings: `git/delta.gitconfig` (included from `~/.gitconfig`). After
+  editing the theme file, run `bat cache --build`.
 - Merge conflicts use `zdiff3`, so they also show the original text.
 - `gitpush` checks everything first (commit message, repo, branch, remote) and
   explains failures in plain words. A failed push never loses your commit.
@@ -440,7 +452,8 @@ Vim. To use Neovim, add `export EDITOR=nvim` to `zsh/env.zsh`.
 |---|---|
 | `Brewfile` | Everything installed with Homebrew: CLI tools, apps, VS Code extensions |
 | `install.sh` | New-Mac setup script (see [Quick start](#quick-start-new-mac)) |
-| `git/delta.gitconfig` | delta settings for git |
+| `git/delta.gitconfig` | GitHub-style diff settings for delta |
+| `bat/themes/GitHub Dark.tmTheme` | GitHub dark syntax colours for bat and delta (linked as `~/.config/bat/themes`) |
 | `starship.toml` | **Windows only** (starship prompt config). Not used on macOS |
 | `terminal-settings.json` | Windows Terminal settings |
 | `.bashrc` | Older bash config, not linked automatically |

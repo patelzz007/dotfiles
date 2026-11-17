@@ -4,9 +4,9 @@
 #
 #   1. Homebrew packages, apps and VS Code extensions (Brewfile)
 #   2. Oh My Zsh + plugins (autosuggestions, syntax-highlighting, fzf-tab)
-#   3. Symlinks: ~/.zshrc, ~/.config/zsh
+#   3. Symlinks: ~/.zshrc, ~/.config/zsh, ~/.config/bat/themes
 #      (anything already there is renamed to *.backup-<timestamp>, never deleted)
-#   4. git: include the delta settings from git/delta.gitconfig
+#   4. git: include the GitHub-style delta settings from git/delta.gitconfig
 #   5. Node: latest LTS via fnm, set as default, + global npm packages
 #
 # Usage:  ./install.sh
@@ -64,7 +64,11 @@ link() {
 }
 link "$DOTFILES/.zshrc"  "$HOME/.zshrc"
 link "$DOTFILES/zsh"     "$HOME/.config/zsh"
+link "$DOTFILES/bat/themes" "$HOME/.config/bat/themes"
 # (starship.toml is for Windows only and is deliberately not linked on macOS.)
+
+info "Building bat's theme cache (GitHub Dark theme for bat and delta)"
+bat cache --build >/dev/null
 
 # ---- 4. git + delta ------------------------------------------------------------
 DELTA_CONFIG="$DOTFILES/git/delta.gitconfig"
